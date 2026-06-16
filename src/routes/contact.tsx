@@ -81,8 +81,8 @@ function ContactGrid() {
     {
       icon: Mail,
       label: "Email",
-      value: "hello@sxtech.me",
-      href: "mailto:hello@sxtech.me",
+      value: "contact@sxtech.me",
+      href: "mailto:contact@sxtech.me",
     },
     {
       icon: Phone,
@@ -244,7 +244,7 @@ function CompanyMap() {
               asChild
               className="mt-8 h-12 rounded-full bg-gradient-primary px-7 text-base font-semibold text-white shadow-glow hover:opacity-95"
             >
-              <a href="mailto:hello@sxtech.me">
+              <a href="mailto:contact@sxtech.me">
                 Start a Project <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
