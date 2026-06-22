@@ -227,21 +227,21 @@ function Capabilities() {
   const items = [
     {
       icon: Briefcase,
-      title: "Transformation Advisory",
-      tagline: "End-to-end transformation — strategy, framework, and execution",
-      desc: "Consulting and workshops that turn transformation into action — business model redesign, AI adoption roadmap, operating model rewiring, and team enablement. Delivered through executive advisory, hands-on workshops, and our proven SX Transformation Framework: Diagnose → Design → Build → Activate → Scale.",
+      title: "Consult — Transformation Advisory",
+      tagline: "Strategy, framework, and execution — end to end",
+      desc: "We turn ambition into a clear plan you can act on. Through executive advisory and hands-on workshops, we redesign your business model, map your AI adoption, and rewire how your team operates — guided by our proven Diagnose → Design → Build → Activate → Scale framework.",
     },
     {
       icon: Sparkles,
-      title: "Platform Development — Powered by AI",
-      tagline: "Build AI-native platforms that run your business",
-      desc: "Design and ship scalable web, mobile, and backend systems with AI embedded at the core — across content, operations, sales, and decision loops — turning intelligence into measurable revenue and efficiency gains.",
+      title: "Platform Builder — Powered by AI",
+      tagline: "AI-native platforms that run your business",
+      desc: "We design and ship scalable web, mobile, and backend systems with AI built in from day one — across content, operations, and sales. The result: less manual work, faster decisions, and measurable gains in revenue and efficiency.",
     },
     {
       icon: LayoutDashboard,
-      title: "PMO & Delivery Management",
-      tagline: "Ensure projects get delivered — on time, on target",
-      desc: "We manage execution, align teams, track progress, and drive outcomes.",
+      title: "Projects — PMO & Delivery Management",
+      tagline: "Delivered on time, on budget, on target",
+      desc: "We own the execution so you don't have to chase it. Our PMO aligns teams, tracks every milestone, and clears blockers — keeping your projects moving and your outcomes on track.",
     },
   ];
   return (
