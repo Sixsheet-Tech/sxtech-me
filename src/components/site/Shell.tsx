@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Facebook, Instagram, Mail, Menu, Phone, X } from "lucide-react";
+import { ArrowRight, Mail, Menu, Phone, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -27,7 +27,7 @@ export function BackgroundFX() {
 }
 
 export function Nav() {
-  const links: Array<{ to: string; label: string; hash?: string }> = [
+  const links: Array<{ to: string; label: string; hash?: string; external?: boolean }> = [
     { to: "/", label: "Home" },
     { to: "/business-ventures", label: "TECH™ Services" },
     { to: "/ventures", label: "Ventures Studio" },
@@ -41,23 +41,38 @@ export function Nav() {
         <Link to="/" className="flex items-center gap-2.5">
           <img
             src={sxLogo}
-            alt="SX Transformation"
+            alt="SX Tech"
             className="h-8 w-8 object-contain drop-shadow-[0_0_12px_color-mix(in_oklab,var(--brand-indigo)_60%,transparent)]"
           />
+          <span className="text-lg font-bold tracking-tight text-foreground">
+            SX <span className="text-gradient">Tech</span>
+          </span>
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <Link
-              key={`${l.to}-${l.label}`}
-              to={l.to}
-              hash={l.hash}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              activeOptions={{ exact: true }}
-              activeProps={{ className: "text-foreground" }}
-            >
-              {l.label}
-            </Link>
-          ))}
+          {links.map((l) =>
+            l.external ? (
+              <a
+                key={`${l.to}-${l.label}`}
+                href={l.to}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {l.label}
+              </a>
+            ) : (
+              <Link
+                key={`${l.to}-${l.label}`}
+                to={l.to}
+                hash={l.hash}
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                activeOptions={{ exact: true }}
+                activeProps={{ className: "text-foreground" }}
+              >
+                {l.label}
+              </Link>
+            )
+          )}
         </nav>
         <div className="flex items-center gap-2">
           <Button
@@ -83,19 +98,32 @@ export function Nav() {
       {open && (
         <div className="border-t border-border/60 bg-background/95 backdrop-blur-xl md:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4">
-            {links.map((l) => (
-              <Link
-                key={`m-${l.to}-${l.label}`}
-                to={l.to}
-                hash={l.hash}
-                onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-base text-muted-foreground transition-colors hover:bg-card/60 hover:text-foreground"
-                activeOptions={{ exact: true }}
-                activeProps={{ className: "text-foreground bg-card/60" }}
-              >
-                {l.label}
-              </Link>
-            ))}
+            {links.map((l) =>
+              l.external ? (
+                <a
+                  key={`m-${l.to}-${l.label}`}
+                  href={l.to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg px-3 py-3 text-base text-muted-foreground transition-colors hover:bg-card/60 hover:text-foreground"
+                >
+                  {l.label}
+                </a>
+              ) : (
+                <Link
+                  key={`m-${l.to}-${l.label}`}
+                  to={l.to}
+                  hash={l.hash}
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg px-3 py-3 text-base text-muted-foreground transition-colors hover:bg-card/60 hover:text-foreground"
+                  activeOptions={{ exact: true }}
+                  activeProps={{ className: "text-foreground bg-card/60" }}
+                >
+                  {l.label}
+                </Link>
+              )
+            )}
             <Button
               asChild
               size="sm"
@@ -113,36 +141,33 @@ export function Nav() {
 }
 
 export function Footer() {
-  const socials = [
-    { href: "https://facebook.com", label: "Facebook", icon: Facebook },
-    { href: "https://instagram.com", label: "Instagram", icon: Instagram },
-    { href: "mailto:hello@sxtrans.com", label: "Email", icon: Mail },
-    { href: "tel:+66000000000", label: "Phone", icon: Phone },
-  ];
   return (
     <footer className="border-t border-border/60">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 py-10 text-sm text-muted-foreground md:flex-row">
         <div className="flex items-center gap-2.5">
-          <img src={sxLogo} alt="SIXSHEET Tech" className="h-7 w-7 object-contain" />
-          <span className="font-medium text-foreground">SIXSHEET Tech by SIXSHEET Company</span>
+          <img src={sxLogo} alt="SX Tech" className="h-7 w-7 object-contain" />
+          <div className="leading-tight">
+            <div className="font-semibold text-foreground">SX Tech</div>
+            <div className="text-xs text-muted-foreground">Sixsheet Tech Co., Ltd.</div>
+          </div>
         </div>
-        <div className="flex items-center gap-3">
-          {socials.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              aria-label={s.label}
-              target={s.href.startsWith("http") ? "_blank" : undefined}
-              rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="grid h-9 w-9 place-items-center rounded-full border border-border bg-card/60 text-muted-foreground transition-colors hover:border-[color:var(--brand-indigo)] hover:text-foreground"
-            >
-              <s.icon className="h-4 w-4" />
-            </a>
-          ))}
+        <div className="flex flex-col items-center gap-1.5 md:items-end">
+          <a
+            href="mailto:contact@sxtech.me"
+            className="flex items-center gap-2 transition-colors hover:text-foreground"
+          >
+            <Mail className="h-4 w-4 text-[color:var(--brand-cyan)]" /> contact@sxtech.me
+          </a>
+          <a
+            href="tel:+66839462656"
+            className="flex items-center gap-2 transition-colors hover:text-foreground"
+          >
+            <Phone className="h-4 w-4 text-[color:var(--brand-cyan)]" /> +66 83 946 2656
+          </a>
         </div>
-        <div className="text-xs">
-          © {new Date().getFullYear()} SIXSHEET Tech by SIXSHEET Company.
-          Strategic Intelligence + Human Depth.
+        <div className="text-center text-xs md:text-right">
+          © {new Date().getFullYear()} Sixsheet Tech Co., Ltd.
+          <br className="hidden md:block" /> Strategic Intelligence + Human Depth.
         </div>
       </div>
     </footer>
@@ -172,9 +197,10 @@ export function Section({
       {(eyebrow || title || subtitle) && (
         <div className="mx-auto mb-10 max-w-3xl text-center">
           {eyebrow && (
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary" />
+            <div className="mb-5 flex items-center justify-center gap-3 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--brand-cyan)]">
+              <span className="h-px w-8 bg-[color:var(--brand-cyan)]" />
               {eyebrow}
+              <span className="h-px w-8 bg-[color:var(--brand-cyan)]" />
             </div>
           )}
           {title && (

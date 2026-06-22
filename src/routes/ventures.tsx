@@ -8,21 +8,18 @@ import {
   Nav,
   Section,
 } from "@/components/site/Shell";
-import venturesHeroSrc from "@/assets/ventures-hero.jpg";
-
-const CACHE_BUST = `v=${Date.now()}`;
-const venturesHero = `${venturesHeroSrc}?${CACHE_BUST}`;
+import venturesHero from "@/assets/ventures-hero.jpg";
 
 export const Route = createFileRoute("/ventures")({
   head: () => ({
     meta: [
-      { title: "Ventures — SX Transformation" },
+      { title: "Ventures — SX Tech" },
       {
         name: "description",
         content:
-          "Selected ventures designed, built, and activated through the SX Transformation Ecosystem — co-created and scaled together.",
+          "Selected ventures designed, built, and activated through the SX Tech ecosystem — co-created and scaled together.",
       },
-      { property: "og:title", content: "Ventures — SX Transformation" },
+      { property: "og:title", content: "Ventures — SX Tech" },
       {
         property: "og:description",
         content:
@@ -81,13 +78,24 @@ function Ventures() {
     {
       name: "CAP*TURES Booth",
       type: "SaaS Photobooth Platform",
-      url: "https://captures.photo/",
+      url: "https://captures.photo/booth",
       problem:
         "Event organizers needed scalable, branded photo experiences without heavy production overhead.",
       system:
         "Built a multi-tenant SaaS platform with white-label branding, real-time AI capture, and event analytics.",
       result:
         "Recurring revenue model with rapid market expansion across event operators.",
+    },
+    {
+      name: "Innerly",
+      type: "Wellness Discovery Platform",
+      url: "https://innerly.live/",
+      problem:
+        "People struggle to find wellness experiences that match their actual emotional state — generic marketplaces don't meet them where they are.",
+      system:
+        "Built a personalized discovery platform: a Mind Longevity quiz maps inner archetypes, then matches curated, vetted spaces across healing, movement, mindfulness, and spiritual growth.",
+      result:
+        "A quiet space to meet yourself — connecting people to conscious-living experiences tailored to their inner state.",
     },
     {
       name: "KengSob",

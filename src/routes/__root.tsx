@@ -29,31 +29,29 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SX TECH — Transforming Business. Evolving Humans." },
+      { title: "SX Tech — Transforming Business. Evolving Humans." },
       {
         name: "description",
         content:
-          "SX Transformation is a new category: Strategic Intelligence + Human Depth. We transform business systems and evolve the leaders behind them.",
+          "SX Tech is a transformation company: Strategic Intelligence + Human Depth. We build revenue systems and upgrade the leaders behind them.",
       },
-      { name: "author", content: "SX Transformation" },
-      {
-        property: "og:title",
-        content: "SX Transformation — Transforming Business. Evolving Humans.",
-      },
+      { name: "author", content: "SX Tech" },
+      { property: "og:type", content: "website" },
+      { property: "og:title", content: "SX Tech — Transforming Business. Evolving Humans." },
       {
         property: "og:description",
         content:
-          "The SX Transformation Ecosystem — Strategic Intelligence + Human Depth. Sustainable, scalable real business growth.",
+          "Strategic Intelligence + Human Depth. We build revenue systems and upgrade the leaders behind them.",
       },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { property: "og:title", content: "SX TECH — Transforming Business. Evolving Humans." },
-      { name: "twitter:title", content: "SX TECH — Transforming Business. Evolving Humans." },
-      { name: "description", content: "SX TECH — Transforming Business. Evolving Humans." },
-      { property: "og:description", content: "SX TECH — Transforming Business. Evolving Humans." },
-      { name: "twitter:description", content: "SX TECH — Transforming Business. Evolving Humans." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/244b79a1-0ef3-4736-8889-2b5c03c30436" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/244b79a1-0ef3-4736-8889-2b5c03c30436" },
+      { property: "og:image", content: "https://sxtech.me/og-image.jpg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "SX Tech — Transforming Business. Evolving Humans." },
+      {
+        name: "twitter:description",
+        content:
+          "Strategic Intelligence + Human Depth. We build revenue systems and upgrade the leaders behind them.",
+      },
+      { name: "twitter:image", content: "https://sxtech.me/og-image.jpg" },
     ],
     links: [
       {
@@ -71,7 +69,7 @@ export const Route = createRootRoute({
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap",
       },
     ],
   }),
