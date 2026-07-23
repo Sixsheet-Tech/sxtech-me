@@ -7,8 +7,6 @@ import {
   LayoutDashboard,
   Briefcase,
   Sparkles,
-  CalendarDays,
-  Target,
   Lightbulb,
   Network,
   CheckCircle2,
@@ -78,7 +76,7 @@ function BusinessVenturesPage() {
       <main className="relative">
         <PageHero />
         <CompanyOverview />
-        <Capabilities />
+        <ServiceMix />
         <InvestmentThesis />
         <FocusDomains />
         <OurEdge />
@@ -210,7 +208,7 @@ function CompanyOverview() {
                   </span>
                 </div>
                 <h3 className="mt-6 text-2xl font-bold leading-tight">{p.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">{p.desc}</p>
+                <p className="mt-3 text-base font-semibold text-foreground">{p.desc}</p>
               </div>
             ))}
           </div>
@@ -221,27 +219,45 @@ function CompanyOverview() {
 }
 
 /* =========================================================
-   3. CAPABILITIES
+   3. SERVICE MIX (centerpiece)
    ========================================================= */
-function Capabilities() {
-  const items = [
-    {
-      icon: Briefcase,
-      title: "Consult — Transformation Advisory",
-      tagline: "Strategy, framework, and execution — end to end",
-      desc: "We turn ambition into a clear plan you can act on. Through executive advisory and hands-on workshops, we redesign your business model, map your AI adoption, and rewire how your team operates — guided by our proven Diagnose → Design → Build → Activate → Scale framework.",
-    },
-    {
-      icon: Sparkles,
-      title: "Platform Builder — Powered by AI",
-      tagline: "AI-native platforms that run your business",
-      desc: "We design and ship scalable web, mobile, and backend systems with AI built in from day one — across content, operations, and sales. The result: less manual work, faster decisions, and measurable gains in revenue and efficiency.",
-    },
+function ServiceMix() {
+  const pillars = [
     {
       icon: LayoutDashboard,
-      title: "Projects — PMO & Delivery Management",
-      tagline: "Delivered on time, on budget, on target",
-      desc: "We own the execution so you don't have to chase it. Our PMO aligns teams, tracks every milestone, and clears blockers — keeping your projects moving and your outcomes on track.",
+      tag: "Platform",
+      weight: 40,
+      priority: "Primary · recurring",
+      title: "Platform Builder",
+      desc: "Productized platforms we build, own, and scale — the recurring, compounding core of the portfolio.",
+      examples: ["CAPTURES", "PopCont", "+ more in dev"],
+    },
+    {
+      icon: Briefcase,
+      tag: "Consult",
+      weight: 30,
+      priority: "Advisory",
+      title: "AI Transformation Advisory",
+      desc: "Advisory across Marketing, Production, Tech, and Business — we define the focus, then help you find the leads.",
+      examples: ["Marketing", "Production", "Tech", "Business"],
+    },
+    {
+      icon: Rocket,
+      tag: "Project",
+      weight: 20,
+      priority: "Development",
+      title: "Development Solution",
+      desc: "End-to-end development — custom software, AI builds, and system integrations engineered to solve real business problems.",
+      examples: ["Captures Customize", "AfterImage", "OneFreeOne"],
+    },
+    {
+      icon: HandCoins,
+      tag: "Others",
+      weight: 10,
+      priority: "Partnership",
+      title: "Partnership & Authorized Reseller",
+      desc: "Strategic partnerships and authorized reselling — licensed software and group-buy access delivered through trusted partners.",
+      examples: ["Byteplus", "Zoom", "Captures WOW"],
     },
   ];
   return (
@@ -264,39 +280,81 @@ function Capabilities() {
         <div className="relative z-10 mx-auto max-w-5xl">
           <div className="mb-5 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--brand-cyan)]">
             <span className="h-px w-9 bg-[color:var(--brand-cyan)]" />
-            SYS // Capabilities
+            SYS // Service Mix
           </div>
           <h2 className="text-balance text-3xl font-bold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
-            Our services. <span className="text-gradient">One integrated team.</span>
+            <span className="text-gradient">Platform economics</span> anchor the portfolio.
           </h2>
           <p className="mt-4 max-w-2xl text-pretty text-sm text-neutral-300 md:text-base">
-            Hire us for any of these — or fold the whole set into a single transformation program.
+            Complemented by consulting, projects, and licensing — a platform-led
+            portfolio built to compound.
           </p>
+
+          {/* implicit allocation bar (weighting shown by width, not numbers) */}
+          <div className="mt-10 flex h-2.5 w-full overflow-hidden rounded-full border border-white/10">
+            {pillars.map((p, i) => (
+              <div
+                key={p.tag}
+                style={{
+                  flexGrow: p.weight,
+                  background: `color-mix(in oklab, var(--brand-cyan) ${90 - i * 22}%, transparent)`,
+                }}
+                className="h-full border-r border-[color:oklch(0.24_0.05_260)] last:border-r-0"
+              />
+            ))}
+          </div>
+          <div className="mt-3 flex w-full gap-0">
+            {pillars.map((p) => (
+              <div
+                key={p.tag}
+                style={{ flexGrow: p.weight }}
+                className="font-mono text-[10px] uppercase tracking-[0.16em] text-neutral-400"
+              >
+                {p.tag}
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="relative z-10 mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {items.map((it, i) => (
+
+        <div className="relative z-10 mx-auto mt-14 grid max-w-6xl gap-6 sm:grid-cols-2">
+          {pillars.map((p, i) => (
             <div
-              key={it.title}
+              key={p.tag}
               className="group relative flex flex-col rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all hover:-translate-y-1 hover:border-[color:var(--brand-cyan)]/40 hover:bg-white/[0.08]"
             >
               <div className="flex items-start justify-between">
                 <div className={ICON_FRAME}>
-                  <it.icon className="h-5 w-5" />
+                  <p.icon className="h-5 w-5" />
                 </div>
                 <span className="font-mono text-xs tracking-[0.16em] text-[color:var(--brand-cyan)]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </div>
-              <h3 className="mt-8 text-2xl font-bold leading-tight tracking-tight text-white">
-                {it.title}
+              <div className="mt-8 flex flex-wrap items-center gap-2.5">
+                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[color:var(--brand-cyan)]">
+                  {p.tag}
+                </span>
+                <span className="h-1 w-1 rounded-full bg-neutral-500" />
+                <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-neutral-400">
+                  {p.priority}
+                </span>
+              </div>
+              <h3 className="mt-2 text-2xl font-bold leading-tight tracking-tight text-white">
+                {p.title}
               </h3>
-              <p className="mt-3 text-sm font-semibold text-[color:var(--brand-cyan)]">
-                {it.tagline}
-              </p>
               <p className="mt-3 text-sm leading-relaxed text-neutral-300">
-                {it.desc}
+                {p.desc}
               </p>
-              <div className="mt-8 h-px w-12 bg-gradient-primary opacity-60" />
+              <div className="mt-6 flex flex-wrap gap-2">
+                {p.examples.map((ex) => (
+                  <span
+                    key={ex}
+                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] text-neutral-300"
+                  >
+                    {ex}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
@@ -311,24 +369,24 @@ function Capabilities() {
 function FocusDomains() {
   const domains = [
     {
-      icon: Rocket,
-      title: "Build Startup & Platform",
-      desc: "From zero to product — we co-build startups and platforms ready to scale, with technology, team, and go-to-market in place from day one.",
-    },
-    {
-      title: "Marketing & Technology",
-      icon: Target,
-      desc: "Marketing engines fused with the right tech stack — content, growth loops, and automation that drive measurable conversion and lower CAC.",
-    },
-    {
       icon: Sparkles,
-      title: "AI Transformation",
-      desc: "Embed AI across operations, decisions, and customer experience — rewiring how the business runs to unlock new efficiency and revenue.",
+      title: "Marketing & Content Creator",
+      desc: "AI-powered marketing and content engines — campaigns, creative, and content that convert, produced at speed and scale.",
     },
     {
-      icon: CalendarDays,
-      title: "Events & Photobooth Business",
-      desc: "Experience-driven ventures — from live events to AI-powered photobooth activations that turn brand moments into recurring revenue streams.",
+      icon: Lightbulb,
+      title: "Creative Agency",
+      desc: "Full-service creative — brand, design, video, and campaigns — built with AI-accelerated production for sharper output, faster.",
+    },
+    {
+      icon: TrendingUp,
+      title: "Sales",
+      desc: "Sales systems that close — pipelines, automation, and enablement that turn interest into revenue and lower your cost of acquisition.",
+    },
+    {
+      icon: Network,
+      title: "Business Process Improvement",
+      desc: "Rewire how the business runs — streamline operations, automate the manual, and embed AI into the workflows that matter most.",
     },
   ];
   return (

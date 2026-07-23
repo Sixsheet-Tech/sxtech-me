@@ -98,15 +98,26 @@ function Ventures() {
         "A quiet space to meet yourself — connecting people to conscious-living experiences tailored to their inner state.",
     },
     {
-      name: "KengSob",
-      type: "Education Platform",
-      url: "https://kengsob.com/",
+      name: "PopCont",
+      type: "AI Marketing Platform",
+      url: "https://popcont.ai/",
       problem:
-        "Learners lacked an outcomes-driven, high-trust prep ecosystem with monetizable instructor networks.",
+        "Brands need to post consistently on social — but hiring a content team is slow and expensive.",
       system:
-        "Designed and built a vertical education platform with content engine, performance tracking, and creator economy layer.",
+        "Built an AI content platform with a Brand DNA engine — one-click captions and images, campaign planning, and auto-publishing to Instagram & Facebook with analytics.",
       result:
-        "Scaled an active community and unlocked multi-channel revenue across instructors and partners.",
+        "Post every day, consistently, without hiring a team — credit-based, no subscription.",
+    },
+    {
+      name: "PokerOS",
+      type: "Poker Club Operating System",
+      url: "https://pokeros-pearl.vercel.app/",
+      problem:
+        "Running tournaments means manual blind clocks, seating, buy-ins, and payout math — heavy operational overhead.",
+      system:
+        "Built a web platform that automates the full tournament: blind clock, QR check-in, auto seating & rebalancing, prize-pool payouts, leaderboards, and club analytics.",
+      result:
+        "The operating system for poker clubs — organizers focus on the game, not the logistics.",
     },
   ];
   return (

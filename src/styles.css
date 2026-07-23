@@ -202,4 +202,11 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
+  /* Elegant serif display — used for the HUMAN™ / wellness pages */
+  .font-display {
+    font-family: "Cormorant Garamond", ui-serif, Georgia, "Times New Roman", serif;
+  }
+  .text-gold {
+    color: #d4b06a;
+  }
 }

@@ -22,6 +22,8 @@ import {
 } from "@/components/site/Shell";
 import founderThanawin from "@/assets/founder-thanawin.png";
 import founderKritchapon from "@/assets/founder-kritchapon.png";
+import teamKho from "@/assets/team-kho.jpg";
+import teamJSettha from "@/assets/team-jsettha.jpg";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -51,7 +53,7 @@ function ContactPage() {
         <Hero />
         <ContactForm />
         <ContactGrid />
-        <Founders />
+        <Team />
         <CompanyMap />
       </main>
       <Footer />
@@ -251,8 +253,20 @@ function ContactGrid() {
   );
 }
 
-function Founders() {
-  const people = [
+type Person = {
+  name: string;
+  role: string;
+  bio: string;
+  photo?: string;
+  initials?: string;
+  email?: string;
+  phone?: string;
+  phoneHref?: string;
+  linkedin: string;
+};
+
+function Team() {
+  const people: Person[] = [
     {
       name: "Thanawin Ratametha",
       role: "CEO · Digital Transformation & Ventures",
@@ -273,26 +287,48 @@ function Founders() {
       phoneHref: "tel:+66915324195",
       linkedin: "https://www.linkedin.com/in/kritchapon-choktananan-176595b2/",
     },
+    {
+      name: "Kho Schwat",
+      role: "AI Consultant · Marketing, Creative & Sales",
+      bio: "AI adoption & governance specialist blending creativity, business, and AI. He helps organizations turn AI from experimentation into practical business impact — connecting strategy, people, workflows, and real-world adoption.",
+      photo: teamKho,
+      initials: "KS",
+      linkedin: "https://www.linkedin.com/in/schwat-tangboontina-ba4285128",
+    },
+    {
+      name: "J Settha",
+      role: "Content Creator & AI Consultant",
+      bio: "Creative Strategist Manager with 5+ years at Heroleads Asia, leading a team of 6+. Directs pitches, manages creative campaigns, and oversees strategic creative product management to hit revenue targets — with deep expertise in performance marketing.",
+      photo: teamJSettha,
+      initials: "JS",
+      linkedin: "https://www.linkedin.com/in/jsettha",
+    },
   ];
   return (
     <Section
-      eyebrow="Founders"
+      eyebrow="Team"
       title={<>The people behind <span className="text-gradient">the system.</span></>}
     >
       <div className="grid gap-6 md:grid-cols-2">
         {people.map((p) => (
           <GradientCard key={p.name}>
             <div className="flex items-center gap-4">
-              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl bg-gradient-primary p-[2px] shadow-glow">
-                <img
-                  src={p.photo}
-                  alt={`Portrait of ${p.name}`}
-                  width={768}
-                  height={768}
-                  loading="lazy"
-                  className="h-full w-full rounded-[14px] object-cover"
-                />
-              </div>
+              {p.photo ? (
+                <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl bg-gradient-primary p-[2px] shadow-glow">
+                  <img
+                    src={p.photo}
+                    alt={`Portrait of ${p.name}`}
+                    width={768}
+                    height={768}
+                    loading="lazy"
+                    className="h-full w-full rounded-[14px] object-cover"
+                  />
+                </div>
+              ) : (
+                <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-primary text-lg font-bold text-white shadow-glow">
+                  {p.initials}
+                </div>
+              )}
               <div>
                 <h3 className="text-lg font-bold leading-tight">{p.name}</h3>
                 <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-[color:var(--brand-cyan)]">
@@ -303,22 +339,28 @@ function Founders() {
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
               {p.bio}
             </p>
-            <div className="mt-5 space-y-2.5">
-              <a
-                href={`mailto:${p.email}`}
-                className="flex items-center gap-2.5 text-sm text-foreground/90 transition-colors hover:text-[color:var(--brand-cyan)]"
-              >
-                <Mail className="h-4 w-4 shrink-0 text-[color:var(--brand-cyan)]" />
-                {p.email}
-              </a>
-              <a
-                href={p.phoneHref}
-                className="flex items-center gap-2.5 text-sm text-foreground/90 transition-colors hover:text-[color:var(--brand-cyan)]"
-              >
-                <Phone className="h-4 w-4 shrink-0 text-[color:var(--brand-cyan)]" />
-                {p.phone}
-              </a>
-            </div>
+            {(p.email || p.phone) && (
+              <div className="mt-5 space-y-2.5">
+                {p.email && (
+                  <a
+                    href={`mailto:${p.email}`}
+                    className="flex items-center gap-2.5 text-sm text-foreground/90 transition-colors hover:text-[color:var(--brand-cyan)]"
+                  >
+                    <Mail className="h-4 w-4 shrink-0 text-[color:var(--brand-cyan)]" />
+                    {p.email}
+                  </a>
+                )}
+                {p.phone && (
+                  <a
+                    href={p.phoneHref}
+                    className="flex items-center gap-2.5 text-sm text-foreground/90 transition-colors hover:text-[color:var(--brand-cyan)]"
+                  >
+                    <Phone className="h-4 w-4 shrink-0 text-[color:var(--brand-cyan)]" />
+                    {p.phone}
+                  </a>
+                )}
+              </div>
+            )}
             <a
               href={p.linkedin}
               target="_blank"
