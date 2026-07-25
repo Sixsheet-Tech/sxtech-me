@@ -48,7 +48,7 @@ function BlueprintGrid({
 export const Route = createFileRoute("/business-ventures")({
   head: () => ({
     meta: [
-      { title: "TECH™ — Technology Venture Builder | SX Tech" },
+      { title: "TECH™ — Technology Venture Builder | SIXSHEET Tech" },
       {
         name: "description",
         content:
@@ -56,7 +56,7 @@ export const Route = createFileRoute("/business-ventures")({
       },
       {
         property: "og:title",
-        content: "TECH™ — Technology Venture Builder | SX Tech",
+        content: "TECH™ — Technology Venture Builder | SIXSHEET Tech",
       },
       {
         property: "og:description",

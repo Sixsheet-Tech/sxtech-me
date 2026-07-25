@@ -41,11 +41,11 @@ export function Nav() {
         <Link to="/" className="flex items-center gap-2.5">
           <img
             src={sxLogo}
-            alt="SX Tech"
+            alt="SIXSHEET Tech"
             className="h-8 w-8 object-contain drop-shadow-[0_0_12px_color-mix(in_oklab,var(--brand-indigo)_60%,transparent)]"
           />
           <span className="text-lg font-bold tracking-tight text-foreground">
-            SX <span className="text-gradient">Tech</span>
+            SIXSHEET <span className="text-gradient">Tech</span>
           </span>
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
@@ -145,9 +145,9 @@ export function Footer() {
     <footer className="border-t border-border/60">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 py-10 text-sm text-muted-foreground md:flex-row">
         <div className="flex items-center gap-2.5">
-          <img src={sxLogo} alt="SX Tech" className="h-7 w-7 object-contain" />
+          <img src={sxLogo} alt="SIXSHEET Tech" className="h-7 w-7 object-contain" />
           <div className="leading-tight">
-            <div className="font-semibold text-foreground">SX Tech</div>
+            <div className="font-semibold text-foreground">SIXSHEET Tech</div>
             <div className="text-xs text-muted-foreground">Sixsheet Tech Co., Ltd.</div>
           </div>
         </div>

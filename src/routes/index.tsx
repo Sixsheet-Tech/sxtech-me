@@ -11,13 +11,13 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SX Tech — We build revenue systems. We upgrade leaders." },
+      { title: "SIXSHEET Tech — We build revenue systems. We upgrade leaders." },
       {
         name: "description",
         content:
           "A Transformation Company combining Technology + Human Performance. We build business systems and upgrade the leaders behind them.",
       },
-      { property: "og:title", content: "SX Tech — The Transformation Company" },
+      { property: "og:title", content: "SIXSHEET Tech — The Transformation Company" },
       {
         property: "og:description",
         content: "We build revenue systems. And upgrade the leaders behind them.",
@@ -155,7 +155,7 @@ function Hero() {
         <div className="flex items-center justify-between gap-4 border-b border-border/70 py-5 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
           <div className="flex items-center gap-2.5 font-semibold tracking-[0.18em] text-foreground">
             <span className="h-2.5 w-2.5 rounded-full bg-gradient-primary shadow-glow" />
-            SX·TECH
+            SIXSHEET·TECH
           </div>
           <div className="hidden md:block">[ SYS.LOG / TRANSFORMATION CO. / 2026 ]</div>
           <div>BKK · 13.7563°N 100.5018°E</div>

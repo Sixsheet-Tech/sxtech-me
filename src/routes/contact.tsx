@@ -28,13 +28,13 @@ import teamJSettha from "@/assets/team-jsettha.jpg";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Us — SX Tech" },
+      { title: "Contact Us — SIXSHEET Tech" },
       {
         name: "description",
         content:
-          "Talk to the SX Tech team. Email, phone, and our founders — let’s build your next growth system.",
+          "Talk to the SIXSHEET Tech team. Email, phone, and our founders — let’s build your next growth system.",
       },
-      { property: "og:title", content: "Contact Us — SX Tech" },
+      { property: "og:title", content: "Contact Us — SIXSHEET Tech" },
       {
         property: "og:description",
         content: "Let’s build your next growth system — together.",

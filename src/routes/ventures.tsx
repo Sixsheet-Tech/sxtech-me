@@ -13,13 +13,13 @@ import venturesHero from "@/assets/ventures-hero.jpg";
 export const Route = createFileRoute("/ventures")({
   head: () => ({
     meta: [
-      { title: "Ventures — SX Tech" },
+      { title: "Ventures — SIXSHEET Tech" },
       {
         name: "description",
         content:
-          "Selected ventures designed, built, and activated through the SX Tech ecosystem — co-created and scaled together.",
+          "Selected ventures designed, built, and activated through the SIXSHEET Tech ecosystem — co-created and scaled together.",
       },
-      { property: "og:title", content: "Ventures — SX Tech" },
+      { property: "og:title", content: "Ventures — SIXSHEET Tech" },
       {
         property: "og:description",
         content:

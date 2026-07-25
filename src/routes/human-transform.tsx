@@ -20,7 +20,7 @@ const GOLD = "#d4b06a";
 export const Route = createFileRoute("/human-transform")({
   head: () => ({
     meta: [
-      { title: "HUMAN™ — Mind Longevity for Leaders | SX Tech" },
+      { title: "HUMAN™ — Mind Longevity for Leaders | SIXSHEET Tech" },
       {
         name: "description",
         content:

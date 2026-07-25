@@ -29,15 +29,15 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SX Tech — Transforming Business. Evolving Humans." },
+      { title: "SIXSHEET Tech — Transforming Business. Evolving Humans." },
       {
         name: "description",
         content:
-          "SX Tech is a transformation company: Strategic Intelligence + Human Depth. We build revenue systems and upgrade the leaders behind them.",
+          "SIXSHEET Tech is a transformation company: Strategic Intelligence + Human Depth. We build revenue systems and upgrade the leaders behind them.",
       },
-      { name: "author", content: "SX Tech" },
+      { name: "author", content: "SIXSHEET Tech" },
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "SX Tech — Transforming Business. Evolving Humans." },
+      { property: "og:title", content: "SIXSHEET Tech — Transforming Business. Evolving Humans." },
       {
         property: "og:description",
         content:
@@ -45,7 +45,7 @@ export const Route = createRootRoute({
       },
       { property: "og:image", content: "https://sxtech.me/og-image.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "SX Tech — Transforming Business. Evolving Humans." },
+      { name: "twitter:title", content: "SIXSHEET Tech — Transforming Business. Evolving Humans." },
       {
         name: "twitter:description",
         content:
