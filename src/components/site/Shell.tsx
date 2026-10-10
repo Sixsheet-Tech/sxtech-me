@@ -1,17 +1,18 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, Mail, Menu, Phone, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import sxMark from "@/assets/sx-mark.png";
 import { CONTACT } from "@/lib/site-content";
+import { localePath, stripLocale, useLang, useLocalePath, useT } from "@/lib/i18n";
 
-const NAV_LINKS = [
-  { to: "/", label: "Home" },
-  { to: "/services", label: "Services" },
-  { to: "/industries", label: "Industries" },
-  { to: "/ventures", label: "Platforms" },
-  { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
+const NAV_KEYS = [
+  { to: "/", key: "home" },
+  { to: "/services", key: "services" },
+  { to: "/industries", key: "industries" },
+  { to: "/ventures", key: "platforms" },
+  { to: "/about", key: "about" },
+  { to: "/contact", key: "contact" },
 ] as const;
 
 /** Soft lavender light wash + faint grid, echoing the company profile. */
@@ -33,8 +34,9 @@ export function BackgroundFX() {
 }
 
 export function Logo({ className = "" }: { className?: string }) {
+  const L = useLocalePath();
   return (
-    <Link to="/" className={`flex items-center gap-2.5 ${className}`}>
+    <Link to={L("/")} className={`flex items-center gap-2.5 ${className}`}>
       <img src={sxMark} alt="" className="h-7 w-auto" />
       <span className="font-display text-lg font-extrabold tracking-tight text-foreground">
         SIXSHEET <span className="text-brand">Tech</span>
@@ -43,38 +45,69 @@ export function Logo({ className = "" }: { className?: string }) {
   );
 }
 
+/** TH | EN toggle that keeps the visitor on the same page. */
+function LangSwitch({ className = "" }: { className?: string }) {
+  const lang = useLang();
+  const t = useT();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const base = stripLocale(pathname);
+  return (
+    <div
+      className={`flex items-center rounded-full border border-border bg-card p-0.5 text-xs font-semibold ${className}`}
+      aria-label={t.nav.switchTo}
+    >
+      {(["th", "en"] as const).map((l) => (
+        <Link
+          key={l}
+          to={localePath(l, base)}
+          hrefLang={l}
+          aria-current={l === lang ? "true" : undefined}
+          className={`rounded-full px-2.5 py-1 transition-colors ${
+            l === lang ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {l.toUpperCase()}
+        </Link>
+      ))}
+    </div>
+  );
+}
+
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const t = useT();
+  const L = useLocalePath();
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Logo />
         <nav className="hidden items-center gap-7 lg:flex">
-          {NAV_LINKS.map((l) => (
+          {NAV_KEYS.map((l) => (
             <Link
               key={l.to}
-              to={l.to}
+              to={L(l.to)}
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               activeOptions={{ exact: true }}
               activeProps={{ className: "!text-foreground" }}
             >
-              {l.label}
+              {t.nav[l.key]}
             </Link>
           ))}
         </nav>
         <div className="flex items-center gap-2">
+          <LangSwitch />
           <Button
             asChild
             size="sm"
             className="hidden rounded-full bg-foreground px-5 text-background hover:bg-foreground/90 lg:inline-flex"
           >
-            <Link to="/contact">
-              Let’s Talk <ArrowRight className="ml-1 h-4 w-4" />
+            <Link to={L("/contact")}>
+              {t.nav.letsTalk} <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </Button>
           <button
             type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
             className="grid h-10 w-10 place-items-center rounded-full border border-border bg-card text-foreground lg:hidden"
@@ -86,16 +119,16 @@ export function Nav() {
       {open && (
         <div className="border-t border-border/70 bg-background/95 backdrop-blur-xl lg:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4">
-            {NAV_LINKS.map((l) => (
+            {NAV_KEYS.map((l) => (
               <Link
                 key={`m-${l.to}`}
-                to={l.to}
+                to={L(l.to)}
                 onClick={() => setOpen(false)}
                 className="rounded-lg px-3 py-3 text-base font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                 activeOptions={{ exact: true }}
                 activeProps={{ className: "!text-foreground bg-secondary" }}
               >
-                {l.label}
+                {t.nav[l.key]}
               </Link>
             ))}
             <Button
@@ -103,8 +136,8 @@ export function Nav() {
               size="sm"
               className="mt-2 w-full rounded-full bg-foreground text-background hover:bg-foreground/90"
             >
-              <Link to="/contact" onClick={() => setOpen(false)}>
-                Let’s Talk <ArrowRight className="ml-1 h-4 w-4" />
+              <Link to={L("/contact")} onClick={() => setOpen(false)}>
+                {t.nav.letsTalk} <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </Button>
           </nav>
@@ -115,35 +148,35 @@ export function Nav() {
 }
 
 export function Footer() {
+  const t = useT();
+  const L = useLocalePath();
   return (
     <footer className="border-t border-border/70 bg-card/60">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <Logo />
-          <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-            A transformation company. We build &amp; transform businesses — powered by AI.
-          </p>
+          <p className="mt-4 max-w-sm text-sm text-muted-foreground">{t.footer.tagline}</p>
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-brand">
-            Transformation creates a brighter tomorrow.
+            {t.footer.slogan}
           </p>
         </div>
         <div>
-          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
-            Explore
+          <div className="eyebrow text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
+            {t.footer.explore}
           </div>
           <ul className="mt-4 grid grid-cols-2 gap-2 text-sm text-muted-foreground md:grid-cols-1">
-            {NAV_LINKS.slice(1).map((l) => (
+            {NAV_KEYS.slice(1).map((l) => (
               <li key={`f-${l.to}`}>
-                <Link to={l.to} className="transition-colors hover:text-foreground">
-                  {l.label}
+                <Link to={L(l.to)} className="transition-colors hover:text-foreground">
+                  {t.nav[l.key]}
                 </Link>
               </li>
             ))}
           </ul>
         </div>
         <div className="space-y-2 text-sm text-muted-foreground">
-          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
-            Contact
+          <div className="eyebrow text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
+            {t.footer.contact}
           </div>
           <a
             href={`mailto:${CONTACT.email}`}
@@ -160,13 +193,13 @@ export function Footer() {
           <p className="pt-2 text-xs leading-relaxed">
             {CONTACT.companyTh} · {CONTACT.companyEn}
             <br />
-            เลขทะเบียน {CONTACT.registration}
+            {t.footer.registration} {CONTACT.registration}
           </p>
         </div>
       </div>
       <div className="border-t border-border/70">
         <div className="mx-auto max-w-7xl px-6 py-5 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} {CONTACT.companyEn} All rights reserved.
+          © {new Date().getFullYear()} {CONTACT.companyEn} {t.footer.rights}
         </div>
       </div>
     </footer>
@@ -177,7 +210,7 @@ export function Footer() {
 export function Eyebrow({ children, center = false }: { children: React.ReactNode; center?: boolean }) {
   return (
     <div
-      className={`mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-brand ${
+      className={`eyebrow mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-brand ${
         center ? "justify-center" : ""
       }`}
     >
@@ -306,14 +339,24 @@ export function Rule() {
   return <span className="my-3 block h-[3px] w-10 rounded-full bg-gradient-primary" />;
 }
 
-export function PrimaryButton({ to, children }: { to: string; children: React.ReactNode }) {
+/** Buttons take a locale-neutral path ("/contact") and localize it. */
+export function PrimaryButton({
+  to,
+  hash,
+  children,
+}: {
+  to: string;
+  hash?: string;
+  children: React.ReactNode;
+}) {
+  const L = useLocalePath();
   return (
     <Button
       asChild
       size="lg"
       className="rounded-full bg-gradient-primary px-7 text-white shadow-glow hover:opacity-90"
     >
-      <Link to={to}>
+      <Link to={L(to)} hash={hash}>
         {children} <ArrowRight className="ml-1 h-4 w-4" />
       </Link>
     </Button>
@@ -321,6 +364,7 @@ export function PrimaryButton({ to, children }: { to: string; children: React.Re
 }
 
 export function GhostButton({ to, children }: { to: string; children: React.ReactNode }) {
+  const L = useLocalePath();
   return (
     <Button
       asChild
@@ -328,13 +372,15 @@ export function GhostButton({ to, children }: { to: string; children: React.Reac
       variant="outline"
       className="rounded-full border-border bg-card px-7 text-foreground hover:bg-secondary"
     >
-      <Link to={to}>{children}</Link>
+      <Link to={L(to)}>{children}</Link>
     </Button>
   );
 }
 
 /** Closing call-to-action band — "Let's Build What's Next." */
 export function CtaBand({ image }: { image?: string }) {
+  const t = useT();
+  const L = useLocalePath();
   return (
     <section className="mx-auto max-w-7xl px-6 pb-20">
       <div className="relative overflow-hidden rounded-[2rem] bg-gradient-ink text-white">
@@ -352,10 +398,10 @@ export function CtaBand({ image }: { image?: string }) {
         )}
         <div className="relative max-w-xl p-8 md:p-14">
           <div className="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--brand-lilac)]">
-            Transformation creates a brighter tomorrow.
+            {t.cta.slogan}
           </div>
           <h2 className="mt-4 text-4xl font-extrabold leading-[1.05] md:text-5xl">
-            Let’s Build <span className="text-[color:var(--brand-lilac)]">What’s Next.</span>
+            {t.cta.titleA} <span className="text-[color:var(--brand-lilac)]">{t.cta.titleB}</span>
           </h2>
           <div className="mt-6 space-y-1.5 text-sm text-white/80">
             <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-2 hover:text-white">
@@ -370,8 +416,8 @@ export function CtaBand({ image }: { image?: string }) {
             size="lg"
             className="mt-8 rounded-full bg-white px-7 text-[color:var(--brand-ink)] hover:bg-white/90"
           >
-            <Link to="/contact">
-              Let’s Talk <ArrowRight className="ml-1 h-4 w-4" />
+            <Link to={L("/contact")}>
+              {t.cta.button} <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </Button>
         </div>
@@ -385,7 +431,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-background text-foreground antialiased">
       <BackgroundFX />
       <Nav />
-      <main className="relative">{children}</main>
+      <main className="relative overflow-x-clip">{children}</main>
       <Footer />
     </div>
   );

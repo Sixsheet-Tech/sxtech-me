@@ -17,6 +17,12 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BusinessVenturesRouteImport } from './routes/business-ventures'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EnIndexRouteImport } from './routes/en/index'
+import { Route as EnVenturesRouteImport } from './routes/en/ventures'
+import { Route as EnServicesRouteImport } from './routes/en/services'
+import { Route as EnIndustriesRouteImport } from './routes/en/industries'
+import { Route as EnContactRouteImport } from './routes/en/contact'
+import { Route as EnAboutRouteImport } from './routes/en/about'
 
 const VenturesRoute = VenturesRouteImport.update({
   id: '/ventures',
@@ -58,6 +64,36 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnIndexRoute = EnIndexRouteImport.update({
+  id: '/en/',
+  path: '/en/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnVenturesRoute = EnVenturesRouteImport.update({
+  id: '/en/ventures',
+  path: '/en/ventures',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnServicesRoute = EnServicesRouteImport.update({
+  id: '/en/services',
+  path: '/en/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnIndustriesRoute = EnIndustriesRouteImport.update({
+  id: '/en/industries',
+  path: '/en/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnContactRoute = EnContactRouteImport.update({
+  id: '/en/contact',
+  path: '/en/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnAboutRoute = EnAboutRouteImport.update({
+  id: '/en/about',
+  path: '/en/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +104,12 @@ export interface FileRoutesByFullPath {
   '/industries': typeof IndustriesRoute
   '/services': typeof ServicesRoute
   '/ventures': typeof VenturesRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/industries': typeof EnIndustriesRoute
+  '/en/services': typeof EnServicesRoute
+  '/en/ventures': typeof EnVenturesRoute
+  '/en/': typeof EnIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +120,12 @@ export interface FileRoutesByTo {
   '/industries': typeof IndustriesRoute
   '/services': typeof ServicesRoute
   '/ventures': typeof VenturesRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/industries': typeof EnIndustriesRoute
+  '/en/services': typeof EnServicesRoute
+  '/en/ventures': typeof EnVenturesRoute
+  '/en': typeof EnIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +137,12 @@ export interface FileRoutesById {
   '/industries': typeof IndustriesRoute
   '/services': typeof ServicesRoute
   '/ventures': typeof VenturesRoute
+  '/en/about': typeof EnAboutRoute
+  '/en/contact': typeof EnContactRoute
+  '/en/industries': typeof EnIndustriesRoute
+  '/en/services': typeof EnServicesRoute
+  '/en/ventures': typeof EnVenturesRoute
+  '/en/': typeof EnIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +155,12 @@ export interface FileRouteTypes {
     | '/industries'
     | '/services'
     | '/ventures'
+    | '/en/about'
+    | '/en/contact'
+    | '/en/industries'
+    | '/en/services'
+    | '/en/ventures'
+    | '/en/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +171,12 @@ export interface FileRouteTypes {
     | '/industries'
     | '/services'
     | '/ventures'
+    | '/en/about'
+    | '/en/contact'
+    | '/en/industries'
+    | '/en/services'
+    | '/en/ventures'
+    | '/en'
   id:
     | '__root__'
     | '/'
@@ -121,6 +187,12 @@ export interface FileRouteTypes {
     | '/industries'
     | '/services'
     | '/ventures'
+    | '/en/about'
+    | '/en/contact'
+    | '/en/industries'
+    | '/en/services'
+    | '/en/ventures'
+    | '/en/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +204,12 @@ export interface RootRouteChildren {
   IndustriesRoute: typeof IndustriesRoute
   ServicesRoute: typeof ServicesRoute
   VenturesRoute: typeof VenturesRoute
+  EnAboutRoute: typeof EnAboutRoute
+  EnContactRoute: typeof EnContactRoute
+  EnIndustriesRoute: typeof EnIndustriesRoute
+  EnServicesRoute: typeof EnServicesRoute
+  EnVenturesRoute: typeof EnVenturesRoute
+  EnIndexRoute: typeof EnIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +270,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/': {
+      id: '/en/'
+      path: '/en'
+      fullPath: '/en/'
+      preLoaderRoute: typeof EnIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/ventures': {
+      id: '/en/ventures'
+      path: '/en/ventures'
+      fullPath: '/en/ventures'
+      preLoaderRoute: typeof EnVenturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/services': {
+      id: '/en/services'
+      path: '/en/services'
+      fullPath: '/en/services'
+      preLoaderRoute: typeof EnServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/industries': {
+      id: '/en/industries'
+      path: '/en/industries'
+      fullPath: '/en/industries'
+      preLoaderRoute: typeof EnIndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/contact': {
+      id: '/en/contact'
+      path: '/en/contact'
+      fullPath: '/en/contact'
+      preLoaderRoute: typeof EnContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/about': {
+      id: '/en/about'
+      path: '/en/about'
+      fullPath: '/en/about'
+      preLoaderRoute: typeof EnAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +324,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndustriesRoute: IndustriesRoute,
   ServicesRoute: ServicesRoute,
   VenturesRoute: VenturesRoute,
+  EnAboutRoute: EnAboutRoute,
+  EnContactRoute: EnContactRoute,
+  EnIndustriesRoute: EnIndustriesRoute,
+  EnServicesRoute: EnServicesRoute,
+  EnVenturesRoute: EnVenturesRoute,
+  EnIndexRoute: EnIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
