@@ -1,29 +1,35 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ExternalLink, Rocket } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { createFileRoute } from "@tanstack/react-router";
 import {
-  BackgroundFX,
-  Footer,
-  GradientCard,
-  Nav,
-  Section,
-} from "@/components/site/Shell";
-import venturesHero from "@/assets/ventures-hero.jpg";
+  ArrowUpRight,
+  BarChart3,
+  Calendar,
+  Camera,
+  CircleDollarSign,
+  Fingerprint,
+  Image as ImageIcon,
+  Send,
+  Share2,
+  Users,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { CtaBand, Eyebrow, PageShell, Section } from "@/components/site/Shell";
+import popcontProduct from "@/assets/profile/popcont-product.jpg";
+import capturesProduct from "@/assets/profile/captures-product.jpg";
+import ctaCity from "@/assets/profile/cta-city.jpg";
 
 export const Route = createFileRoute("/ventures")({
   head: () => ({
     meta: [
-      { title: "Ventures — SIXSHEET Tech" },
+      { title: "Platforms & Ventures — SIXSHEET Tech" },
       {
         name: "description",
         content:
-          "Selected ventures designed, built, and activated through the SIXSHEET Tech ecosystem — co-created and scaled together.",
+          "We don’t only advise — we build & operate. PopCont, Captures Booth and the ventures we’ve designed, built and run ourselves.",
       },
-      { property: "og:title", content: "Ventures — SIXSHEET Tech" },
+      { property: "og:title", content: "Platforms & Ventures — SIXSHEET Tech" },
       {
         property: "og:description",
-        content:
-          "We don't just launch — we co-create and scale ventures together.",
+        content: "We don’t only advise. We build & operate.",
       },
     ],
   }),
@@ -32,186 +38,216 @@ export const Route = createFileRoute("/ventures")({
 
 function VenturesPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased">
-      <BackgroundFX />
-      <Nav />
-      <main className="relative">
-        <PageHero />
-        <Ventures />
-        <CTA />
-      </main>
-      <Footer />
+    <PageShell>
+      <section className="mx-auto max-w-7xl px-6 pt-14 pb-4 md:pt-20">
+        <Eyebrow>Our Platforms</Eyebrow>
+        <h1 className="max-w-4xl text-balance text-4xl font-extrabold uppercase leading-[1.02] text-foreground md:text-6xl">
+          We don’t only advise.
+          <br />
+          We <span className="text-brand">build &amp; operate.</span>
+        </h1>
+        <p className="mt-6 max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
+          Our own platforms give us first-hand experience in product development, AI, customer
+          adoption, operations and scale — the same lessons we bring to every client.
+        </p>
+      </section>
+      <PopCont />
+      <Captures />
+      <OtherVentures />
+      <CtaBand image={ctaCity} />
+    </PageShell>
+  );
+}
+
+/** Real product screenshot shown inside a minimal browser window. */
+function BrowserFrame({ url, src, alt }: { url: string; src: string; alt: string }) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-border/80 bg-card shadow-elevated">
+      <div className="flex items-center gap-2 border-b border-border/80 bg-secondary/70 px-4 py-2.5">
+        <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+        <span className="ml-3 truncate rounded-md bg-card px-3 py-0.5 text-xs text-muted-foreground">
+          {url}
+        </span>
+      </div>
+      <img src={src} alt={alt} loading="lazy" className="block w-full" />
     </div>
   );
 }
 
-function PageHero() {
+function VisitButton({ href, label }: { href: string; label: string }) {
   return (
-    <section className="relative isolate w-full overflow-hidden px-6 py-24 md:py-32">
-      <img
-        src={venturesHero}
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-65"
-      />
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-background via-background/75 to-background/35" />
-      <div className="relative z-20 mx-auto max-w-3xl text-center">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground backdrop-blur">
-          <span className="h-1.5 w-1.5 rounded-full bg-gradient-primary" />
-          Ventures / Proof
-        </div>
-        <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight md:text-6xl">
-          We don’t just launch —{" "}
-          <span className="text-gradient">we co-create and scale.</span>
-        </h1>
-        <p className="mx-auto mt-5 max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
-          Selected ventures designed, built, and activated through the SX
-          Transformation Ecosystem.
-        </p>
-      </div>
-    </section>
+    <Button
+      asChild
+      size="lg"
+      className="rounded-full bg-gradient-primary px-7 text-white shadow-glow hover:opacity-90"
+    >
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        {label} <ArrowUpRight className="ml-1 h-4 w-4" />
+      </a>
+    </Button>
   );
 }
 
-function Ventures() {
-  const cases = [
-    {
-      name: "CAP*TURES Booth",
-      type: "SaaS Photobooth Platform",
-      url: "https://captures.photo/booth",
-      problem:
-        "Event organizers needed scalable, branded photo experiences without heavy production overhead.",
-      system:
-        "Built a multi-tenant SaaS platform with white-label branding, real-time AI capture, and event analytics.",
-      result:
-        "Recurring revenue model with rapid market expansion across event operators.",
-    },
-    {
-      name: "Innerly",
-      type: "Wellness Discovery Platform",
-      url: "https://innerly.live/",
-      problem:
-        "People struggle to find wellness experiences that match their actual emotional state — generic marketplaces don't meet them where they are.",
-      system:
-        "Built a personalized discovery platform: a Mind Longevity quiz maps inner archetypes, then matches curated, vetted spaces across healing, movement, mindfulness, and spiritual growth.",
-      result:
-        "A quiet space to meet yourself — connecting people to conscious-living experiences tailored to their inner state.",
-    },
-    {
-      name: "PopCont",
-      type: "AI Marketing Platform",
-      url: "https://popcont.ai/",
-      problem:
-        "Brands need to post consistently on social — but hiring a content team is slow and expensive.",
-      system:
-        "Built an AI content platform with a Brand DNA engine — one-click captions and images, campaign planning, and auto-publishing to Instagram & Facebook with analytics.",
-      result:
-        "Post every day, consistently, without hiring a team — credit-based, no subscription.",
-    },
-    {
-      name: "PokerOS",
-      type: "Poker Club Operating System",
-      url: "https://pokeros-pearl.vercel.app/",
-      problem:
-        "Running tournaments means manual blind clocks, seating, buy-ins, and payout math — heavy operational overhead.",
-      system:
-        "Built a web platform that automates the full tournament: blind clock, QR check-in, auto seating & rebalancing, prize-pool payouts, leaderboards, and club analytics.",
-      result:
-        "The operating system for poker clubs — organizers focus on the game, not the logistics.",
-    },
+function PopCont() {
+  const features = [
+    { icon: Fingerprint, title: "Brand DNA", body: "Set up your brand once — AI learns who you are." },
+    { icon: ImageIcon, title: "AI Content Creation", body: "Images, captions and video in high quality with AI." },
+    { icon: Send, title: "Automated Publishing", body: "Auto-post to Facebook, Instagram, TikTok and LINE." },
+    { icon: BarChart3, title: "Analytics", body: "Track results and see what drives growth." },
+  ];
+  const stats = [
+    { v: "159+", l: "Brands started" },
+    { v: "211,000+", l: "Content created" },
+    { v: "12,000+", l: "Images created" },
+    { v: "2,500+", l: "Video generations" },
+    { v: "80%+", l: "Active users create content weekly" },
   ];
   return (
     <Section>
-      <div className="grid gap-6 lg:grid-cols-2">
-        {cases.map((c) => (
-          <GradientCard key={c.name}>
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-2xl font-bold">{c.name}</h3>
-                <div className="mt-1 text-sm text-[color:var(--brand-cyan)]">
-                  {c.type}
-                </div>
-              </div>
-              <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-primary text-white shadow-glow">
-                <Rocket className="h-5 w-5" />
-              </div>
+      <div className="overflow-hidden rounded-[2rem] border border-border/80 bg-card">
+        <div className="grid items-center gap-8 p-8 md:p-12 lg:grid-cols-[1fr_1.1fr]">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              Platform 01
             </div>
-            <div className="mt-6 space-y-4 text-sm">
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                  Problem
-                </div>
-                <p className="mt-1 text-foreground/90">{c.problem}</p>
-              </div>
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                  System Built
-                </div>
-                <p className="mt-1 text-foreground/90">{c.system}</p>
-              </div>
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                  Result
-                </div>
-                <p className="mt-1 text-foreground/90">{c.result}</p>
-              </div>
+            <h2 className="mt-2 text-4xl font-extrabold text-foreground">PopCont</h2>
+            <p className="mt-2 text-lg font-semibold text-brand">
+              AI Marketing &amp; Content Automation Platform for Thai Businesses
+            </p>
+            <p className="mt-4 text-muted-foreground">
+              No content team? PopCont helps businesses create images, write captions, plan posts
+              and publish automatically — all in one platform.
+            </p>
+            <div className="mt-8">
+              <VisitButton href="https://popcont.ai/" label="Visit PopCont" />
             </div>
-            <div className="mt-6">
-              <Button
-                asChild
-                variant="outline"
-                size="sm"
-                className="rounded-full border-[color:var(--brand-cyan)]/40 bg-[color:var(--brand-cyan)]/10 text-[color:var(--brand-cyan)] hover:bg-[color:var(--brand-cyan)]/20"
-              >
-                <a href={c.url} target="_blank" rel="noopener noreferrer">
-                  Visit site <ExternalLink className="ml-2 h-3.5 w-3.5" />
-                </a>
-              </Button>
+          </div>
+          <BrowserFrame url="popcont.ai" src={popcontProduct} alt="PopCont website homepage" />
+        </div>
+        <div className="grid gap-px border-t border-border/80 bg-border/80 sm:grid-cols-2 lg:grid-cols-4">
+          {features.map((f) => (
+            <div key={f.title} className="bg-card p-6">
+              <f.icon className="h-6 w-6 text-brand" />
+              <div className="mt-3 font-bold text-foreground">{f.title}</div>
+              <p className="mt-1 text-sm text-muted-foreground">{f.body}</p>
             </div>
-          </GradientCard>
-        ))}
+          ))}
+        </div>
+        <div className="grid grid-cols-2 gap-6 border-t border-border/80 bg-secondary/60 p-8 md:grid-cols-5">
+          {stats.map((s) => (
+            <div key={s.l}>
+              <div className="text-3xl font-extrabold text-foreground font-display">{s.v}</div>
+              <div className="mt-1 text-sm text-muted-foreground">{s.l}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </Section>
   );
 }
 
-function CTA() {
+function Captures() {
+  const flow = [
+    { icon: Camera, title: "Create", body: "Design your experience" },
+    { icon: Calendar, title: "Capture", body: "Live capture & print" },
+    { icon: Users, title: "Engage", body: "Interactive experience" },
+    { icon: Share2, title: "Share", body: "Live capture & online gallery" },
+    { icon: BarChart3, title: "Data", body: "Analytics & insights" },
+    { icon: CircleDollarSign, title: "Monetize", body: "Turn engagement into revenue" },
+  ];
+  const useCases = [
+    { title: "Photobooth Business", body: "Run professional photobooths with full flexibility." },
+    { title: "Event Activation", body: "Create branded, interactive experiences." },
+    { title: "Self Photo Studio", body: "Automated studio with a payment system." },
+    { title: "Brand & Marketing", body: "Drive engagement and collect first-party data." },
+    { title: "Retail & Venue", body: "Attract visitors and increase foot traffic." },
+    { title: "Custom & Installation", body: "Fully customizable for any creative concept." },
+  ];
   return (
     <Section>
-      <div className="relative isolate mx-auto max-w-4xl overflow-hidden rounded-[2rem] border border-border bg-card/40 px-8 py-20 text-center backdrop-blur md:px-16 md:py-24">
-        <img
-          src={venturesHero}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-50"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-background/95 via-background/70 to-background/40"
-        />
-        <h2 className="relative z-20 text-balance text-3xl font-bold tracking-tight md:text-4xl">
-          Have a venture in mind? Let’s build it together.
-        </h2>
-        <div className="relative z-20 mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button
-            asChild
-            size="lg"
-            className="h-12 rounded-full bg-gradient-primary px-7 text-base font-semibold text-white shadow-glow hover:opacity-95"
-          >
-            <Link to="/contact">
-              Start a Project <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="h-12 rounded-full border-border bg-card/40 px-7 text-base font-semibold backdrop-blur hover:bg-card"
-          >
-            <Link to="/business-ventures">Explore Business &amp; Ventures</Link>
-          </Button>
+      <div className="overflow-hidden rounded-[2rem] border border-border/80 bg-card">
+        <div className="grid items-center gap-8 p-8 md:p-12 lg:grid-cols-[1fr_1.1fr]">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              Platform 02
+            </div>
+            <h2 className="mt-2 text-4xl font-extrabold text-foreground">Captures Booth</h2>
+            <p className="mt-2 text-lg font-semibold text-brand">
+              Event Tech Platform for Photo-Based Engagement
+            </p>
+            <p className="mt-4 text-muted-foreground">
+              More than photobooth software — a complete platform for creating, operating and
+              scaling modern photobooth experiences that engage people and drive real business
+              results.
+            </p>
+            <div className="mt-8">
+              <VisitButton href="https://captures.photo/booth" label="Visit Captures" />
+            </div>
+          </div>
+          <BrowserFrame url="captures.photo/booth" src={capturesProduct} alt="Captures Booth website homepage" />
         </div>
+        <div className="grid grid-cols-2 gap-px border-t border-border/80 bg-border/80 md:grid-cols-3 xl:grid-cols-6">
+          {flow.map((f) => (
+            <div key={f.title} className="bg-card p-5">
+              <f.icon className="h-5 w-5 text-brand" />
+              <div className="mt-2 text-sm font-extrabold uppercase text-foreground font-display">
+                {f.title}
+              </div>
+              <p className="text-xs text-muted-foreground">{f.body}</p>
+            </div>
+          ))}
+        </div>
+        <div className="grid gap-4 border-t border-border/80 bg-secondary/60 p-8 sm:grid-cols-2 lg:grid-cols-3">
+          {useCases.map((u) => (
+            <div key={u.title}>
+              <div className="font-bold text-foreground">{u.title}</div>
+              <p className="text-sm text-muted-foreground">{u.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function OtherVentures() {
+  const ventures = [
+    {
+      name: "Innerly",
+      type: "Wellness Discovery Platform",
+      url: "https://innerly.live/",
+      body: "A personalized discovery platform — a Mind Longevity quiz maps inner archetypes, then matches curated, vetted spaces across healing, movement, mindfulness and spiritual growth.",
+    },
+    {
+      name: "PokerOS",
+      type: "Poker Club Operating System",
+      url: "https://pokeros-pearl.vercel.app/",
+      body: "Automates the full tournament — blind clock, QR check-in, auto seating & rebalancing, prize-pool payouts, leaderboards and club analytics.",
+    },
+  ];
+  return (
+    <Section eyebrow="More ventures" title="Built, launched and operated by our team.">
+      <div className="grid gap-5 md:grid-cols-2">
+        {ventures.map((v) => (
+          <a
+            key={v.name}
+            href={v.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-col rounded-3xl border border-border/80 bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-glow"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="text-2xl font-extrabold text-foreground font-display">{v.name}</div>
+                <div className="text-sm font-semibold text-brand">{v.type}</div>
+              </div>
+              <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-brand" />
+            </div>
+            <p className="mt-4 text-sm text-muted-foreground">{v.body}</p>
+          </a>
+        ))}
       </div>
     </Section>
   );

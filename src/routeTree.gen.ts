@@ -10,14 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VenturesRouteImport } from './routes/ventures'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as HumanTransformRouteImport } from './routes/human-transform'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BusinessVenturesRouteImport } from './routes/business-ventures'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
 const VenturesRoute = VenturesRouteImport.update({
   id: '/ventures',
   path: '/ventures',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriesRoute = IndustriesRouteImport.update({
+  id: '/industries',
+  path: '/industries',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HumanTransformRoute = HumanTransformRouteImport.update({
@@ -35,6 +48,11 @@ const BusinessVenturesRoute = BusinessVenturesRouteImport.update({
   path: '/business-ventures',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -43,50 +61,76 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/business-ventures': typeof BusinessVenturesRoute
   '/contact': typeof ContactRoute
   '/human-transform': typeof HumanTransformRoute
+  '/industries': typeof IndustriesRoute
+  '/services': typeof ServicesRoute
   '/ventures': typeof VenturesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/business-ventures': typeof BusinessVenturesRoute
   '/contact': typeof ContactRoute
   '/human-transform': typeof HumanTransformRoute
+  '/industries': typeof IndustriesRoute
+  '/services': typeof ServicesRoute
   '/ventures': typeof VenturesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/business-ventures': typeof BusinessVenturesRoute
   '/contact': typeof ContactRoute
   '/human-transform': typeof HumanTransformRoute
+  '/industries': typeof IndustriesRoute
+  '/services': typeof ServicesRoute
   '/ventures': typeof VenturesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/business-ventures'
     | '/contact'
     | '/human-transform'
+    | '/industries'
+    | '/services'
     | '/ventures'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/business-ventures' | '/contact' | '/human-transform' | '/ventures'
+  to:
+    | '/'
+    | '/about'
+    | '/business-ventures'
+    | '/contact'
+    | '/human-transform'
+    | '/industries'
+    | '/services'
+    | '/ventures'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/business-ventures'
     | '/contact'
     | '/human-transform'
+    | '/industries'
+    | '/services'
     | '/ventures'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   BusinessVenturesRoute: typeof BusinessVenturesRoute
   ContactRoute: typeof ContactRoute
   HumanTransformRoute: typeof HumanTransformRoute
+  IndustriesRoute: typeof IndustriesRoute
+  ServicesRoute: typeof ServicesRoute
   VenturesRoute: typeof VenturesRoute
 }
 
@@ -97,6 +141,20 @@ declare module '@tanstack/react-router' {
       path: '/ventures'
       fullPath: '/ventures'
       preLoaderRoute: typeof VenturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries': {
+      id: '/industries'
+      path: '/industries'
+      fullPath: '/industries'
+      preLoaderRoute: typeof IndustriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/human-transform': {
@@ -120,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BusinessVenturesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -132,9 +197,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   BusinessVenturesRoute: BusinessVenturesRoute,
   ContactRoute: ContactRoute,
   HumanTransformRoute: HumanTransformRoute,
+  IndustriesRoute: IndustriesRoute,
+  ServicesRoute: ServicesRoute,
   VenturesRoute: VenturesRoute,
 }
 export const routeTree = rootRouteImport
