@@ -23,7 +23,7 @@ import {
 } from "@/components/site/Shell";
 import { EXPERTISE_IMAGES, PROCESS_IMAGES, num } from "@/lib/site-content";
 import { useT } from "@/lib/i18n";
-import servicesHero from "@/assets/profile/services-hero.jpg";
+import servicesHero from "@/assets/workshop/services-hero.jpg";
 import ctaCity from "@/assets/profile/cta-city.jpg";
 
 export function ServicesPage() {

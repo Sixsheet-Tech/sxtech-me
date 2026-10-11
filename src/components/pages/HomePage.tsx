@@ -18,8 +18,8 @@ import {
   num,
 } from "@/lib/site-content";
 import { useLocalePath, useT } from "@/lib/i18n";
-import heroCity from "@/assets/profile/hero-city.jpg";
-import beliefPeople from "@/assets/profile/belief-people.jpg";
+import heroWorkshop from "@/assets/workshop/hero-workshop.jpg";
+import beliefFounders from "@/assets/workshop/belief-founders.jpg";
 import ctaCity from "@/assets/profile/cta-city.jpg";
 import popcontProduct from "@/assets/profile/popcont-product.jpg";
 import capturesProduct from "@/assets/profile/captures-product.jpg";
@@ -75,7 +75,7 @@ function Hero() {
       <div className="relative">
         <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-primary opacity-25 blur-3xl" />
         <img
-          src={heroCity}
+          src={heroWorkshop}
           alt=""
           className="aspect-[4/5] w-full rounded-[2rem] object-cover shadow-elevated"
         />
@@ -118,7 +118,7 @@ function CoreBelief() {
           </div>
         </div>
         <img
-          src={beliefPeople}
+          src={beliefFounders}
           alt=""
           loading="lazy"
           className="aspect-[4/5] w-full rounded-3xl object-cover"
