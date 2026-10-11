@@ -1,0 +1,8 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { IndustriesPage } from "@/components/pages/IndustriesPage";
+import { pageHead } from "@/lib/i18n";
+
+export const Route = createFileRoute("/th/industries")({
+  head: () => pageHead("th", "industries"),
+  component: IndustriesPage,
+});

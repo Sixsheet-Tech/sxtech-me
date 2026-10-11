@@ -2,26 +2,26 @@ import { useRouterState } from "@tanstack/react-router";
 import { en } from "@/lib/content/en";
 import { th } from "@/lib/content/th";
 
-/* Thai is the default locale at "/", English lives under "/en". */
+/* English is the default locale at "/", Thai lives under "/th". */
 export type Lang = "th" | "en";
 export const DICTS = { th, en };
 
 const SITE = "https://sxtech.me";
 
 export function langFromPath(pathname: string): Lang {
-  return pathname === "/en" || pathname.startsWith("/en/") ? "en" : "th";
+  return pathname === "/th" || pathname.startsWith("/th/") ? "th" : "en";
 }
 
-/** "/services" → "/en/services" for English; unchanged for Thai. */
+/** "/services" → "/th/services" for Thai; unchanged for English. */
 export function localePath(lang: Lang, path: string) {
-  if (lang === "th") return path;
-  return path === "/" ? "/en" : `/en${path}`;
+  if (lang === "en") return path;
+  return path === "/" ? "/th" : `/th${path}`;
 }
 
-/** "/en/services" → "/services" (the locale-neutral path). */
+/** "/th/services" → "/services" (the locale-neutral path). */
 export function stripLocale(pathname: string) {
-  if (pathname === "/en" || pathname === "/en/") return "/";
-  if (pathname.startsWith("/en/")) return pathname.slice(3);
+  if (pathname === "/th" || pathname === "/th/") return "/";
+  if (pathname.startsWith("/th/")) return pathname.slice(3);
   return pathname || "/";
 }
 
@@ -66,8 +66,8 @@ export function pageHead(lang: Lang, page: keyof typeof PAGE_PATHS) {
     ],
     links: [
       { rel: "canonical", href: url },
-      { rel: "alternate", hrefLang: "th", href: SITE + path },
-      { rel: "alternate", hrefLang: "en", href: SITE + localePath("en", path) },
+      { rel: "alternate", hrefLang: "en", href: SITE + path },
+      { rel: "alternate", hrefLang: "th", href: SITE + localePath("th", path) },
       { rel: "alternate", hrefLang: "x-default", href: SITE + path },
     ],
   };

@@ -1,8 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { PlatformsPage } from "@/components/pages/PlatformsPage";
-import { pageHead } from "@/lib/i18n";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// English moved to the root in Oct 2026 — keep old /en links working.
 export const Route = createFileRoute("/en/ventures")({
-  head: () => pageHead("en", "platforms"),
-  component: PlatformsPage,
+  beforeLoad: () => {
+    throw redirect({ to: "/ventures", statusCode: 301 });
+  },
 });

@@ -46,7 +46,7 @@ export function Logo({ className = "" }: { className?: string }) {
   );
 }
 
-/** TH | EN toggle that keeps the visitor on the same page. */
+/** EN | TH toggle that keeps the visitor on the same page. */
 function LangSwitch({ className = "" }: { className?: string }) {
   const lang = useLang();
   const t = useT();
@@ -57,7 +57,7 @@ function LangSwitch({ className = "" }: { className?: string }) {
       className={`flex items-center rounded-full border border-border bg-card p-0.5 text-xs font-semibold ${className}`}
       aria-label={t.nav.switchTo}
     >
-      {(["th", "en"] as const).map((l) => (
+      {(["en", "th"] as const).map((l) => (
         <Link
           key={l}
           to={localePath(l, base)}

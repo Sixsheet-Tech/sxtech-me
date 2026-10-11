@@ -17,7 +17,13 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BusinessVenturesRouteImport } from './routes/business-ventures'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ThIndexRouteImport } from './routes/th/index'
 import { Route as EnIndexRouteImport } from './routes/en/index'
+import { Route as ThVenturesRouteImport } from './routes/th/ventures'
+import { Route as ThServicesRouteImport } from './routes/th/services'
+import { Route as ThIndustriesRouteImport } from './routes/th/industries'
+import { Route as ThContactRouteImport } from './routes/th/contact'
+import { Route as ThAboutRouteImport } from './routes/th/about'
 import { Route as EnVenturesRouteImport } from './routes/en/ventures'
 import { Route as EnServicesRouteImport } from './routes/en/services'
 import { Route as EnIndustriesRouteImport } from './routes/en/industries'
@@ -64,9 +70,39 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ThIndexRoute = ThIndexRouteImport.update({
+  id: '/th/',
+  path: '/th/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnIndexRoute = EnIndexRouteImport.update({
   id: '/en/',
   path: '/en/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThVenturesRoute = ThVenturesRouteImport.update({
+  id: '/th/ventures',
+  path: '/th/ventures',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThServicesRoute = ThServicesRouteImport.update({
+  id: '/th/services',
+  path: '/th/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThIndustriesRoute = ThIndustriesRouteImport.update({
+  id: '/th/industries',
+  path: '/th/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThContactRoute = ThContactRouteImport.update({
+  id: '/th/contact',
+  path: '/th/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThAboutRoute = ThAboutRouteImport.update({
+  id: '/th/about',
+  path: '/th/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnVenturesRoute = EnVenturesRouteImport.update({
@@ -109,7 +145,13 @@ export interface FileRoutesByFullPath {
   '/en/industries': typeof EnIndustriesRoute
   '/en/services': typeof EnServicesRoute
   '/en/ventures': typeof EnVenturesRoute
+  '/th/about': typeof ThAboutRoute
+  '/th/contact': typeof ThContactRoute
+  '/th/industries': typeof ThIndustriesRoute
+  '/th/services': typeof ThServicesRoute
+  '/th/ventures': typeof ThVenturesRoute
   '/en/': typeof EnIndexRoute
+  '/th/': typeof ThIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -125,7 +167,13 @@ export interface FileRoutesByTo {
   '/en/industries': typeof EnIndustriesRoute
   '/en/services': typeof EnServicesRoute
   '/en/ventures': typeof EnVenturesRoute
+  '/th/about': typeof ThAboutRoute
+  '/th/contact': typeof ThContactRoute
+  '/th/industries': typeof ThIndustriesRoute
+  '/th/services': typeof ThServicesRoute
+  '/th/ventures': typeof ThVenturesRoute
   '/en': typeof EnIndexRoute
+  '/th': typeof ThIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -142,7 +190,13 @@ export interface FileRoutesById {
   '/en/industries': typeof EnIndustriesRoute
   '/en/services': typeof EnServicesRoute
   '/en/ventures': typeof EnVenturesRoute
+  '/th/about': typeof ThAboutRoute
+  '/th/contact': typeof ThContactRoute
+  '/th/industries': typeof ThIndustriesRoute
+  '/th/services': typeof ThServicesRoute
+  '/th/ventures': typeof ThVenturesRoute
   '/en/': typeof EnIndexRoute
+  '/th/': typeof ThIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -160,7 +214,13 @@ export interface FileRouteTypes {
     | '/en/industries'
     | '/en/services'
     | '/en/ventures'
+    | '/th/about'
+    | '/th/contact'
+    | '/th/industries'
+    | '/th/services'
+    | '/th/ventures'
     | '/en/'
+    | '/th/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -176,7 +236,13 @@ export interface FileRouteTypes {
     | '/en/industries'
     | '/en/services'
     | '/en/ventures'
+    | '/th/about'
+    | '/th/contact'
+    | '/th/industries'
+    | '/th/services'
+    | '/th/ventures'
     | '/en'
+    | '/th'
   id:
     | '__root__'
     | '/'
@@ -192,7 +258,13 @@ export interface FileRouteTypes {
     | '/en/industries'
     | '/en/services'
     | '/en/ventures'
+    | '/th/about'
+    | '/th/contact'
+    | '/th/industries'
+    | '/th/services'
+    | '/th/ventures'
     | '/en/'
+    | '/th/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -209,7 +281,13 @@ export interface RootRouteChildren {
   EnIndustriesRoute: typeof EnIndustriesRoute
   EnServicesRoute: typeof EnServicesRoute
   EnVenturesRoute: typeof EnVenturesRoute
+  ThAboutRoute: typeof ThAboutRoute
+  ThContactRoute: typeof ThContactRoute
+  ThIndustriesRoute: typeof ThIndustriesRoute
+  ThServicesRoute: typeof ThServicesRoute
+  ThVenturesRoute: typeof ThVenturesRoute
   EnIndexRoute: typeof EnIndexRoute
+  ThIndexRoute: typeof ThIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -270,11 +348,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/th/': {
+      id: '/th/'
+      path: '/th'
+      fullPath: '/th/'
+      preLoaderRoute: typeof ThIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en/': {
       id: '/en/'
       path: '/en'
       fullPath: '/en/'
       preLoaderRoute: typeof EnIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/th/ventures': {
+      id: '/th/ventures'
+      path: '/th/ventures'
+      fullPath: '/th/ventures'
+      preLoaderRoute: typeof ThVenturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/th/services': {
+      id: '/th/services'
+      path: '/th/services'
+      fullPath: '/th/services'
+      preLoaderRoute: typeof ThServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/th/industries': {
+      id: '/th/industries'
+      path: '/th/industries'
+      fullPath: '/th/industries'
+      preLoaderRoute: typeof ThIndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/th/contact': {
+      id: '/th/contact'
+      path: '/th/contact'
+      fullPath: '/th/contact'
+      preLoaderRoute: typeof ThContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/th/about': {
+      id: '/th/about'
+      path: '/th/about'
+      fullPath: '/th/about'
+      preLoaderRoute: typeof ThAboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/en/ventures': {
@@ -329,7 +449,13 @@ const rootRouteChildren: RootRouteChildren = {
   EnIndustriesRoute: EnIndustriesRoute,
   EnServicesRoute: EnServicesRoute,
   EnVenturesRoute: EnVenturesRoute,
+  ThAboutRoute: ThAboutRoute,
+  ThContactRoute: ThContactRoute,
+  ThIndustriesRoute: ThIndustriesRoute,
+  ThServicesRoute: ThServicesRoute,
+  ThVenturesRoute: ThVenturesRoute,
   EnIndexRoute: EnIndexRoute,
+  ThIndexRoute: ThIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -3,6 +3,6 @@ import { AboutPage } from "@/components/pages/AboutPage";
 import { pageHead } from "@/lib/i18n";
 
 export const Route = createFileRoute("/about")({
-  head: () => pageHead("th", "about"),
+  head: () => pageHead("en", "about"),
   component: AboutPage,
 });
