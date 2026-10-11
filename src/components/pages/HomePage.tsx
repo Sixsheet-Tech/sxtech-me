@@ -18,7 +18,7 @@ import {
   num,
 } from "@/lib/site-content";
 import { useLocalePath, useT } from "@/lib/i18n";
-import heroWorkshop from "@/assets/workshop/hero-workshop.jpg";
+import heroHall from "@/assets/workshop/hero-hall.jpg";
 import beliefFounders from "@/assets/workshop/belief-founders.jpg";
 import ctaCity from "@/assets/profile/cta-city.jpg";
 import popcontProduct from "@/assets/profile/popcont-product.jpg";
@@ -75,7 +75,7 @@ function Hero() {
       <div className="relative">
         <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-primary opacity-25 blur-3xl" />
         <img
-          src={heroWorkshop}
+          src={heroHall}
           alt=""
           className="aspect-[4/5] w-full rounded-[2rem] object-cover shadow-elevated"
         />

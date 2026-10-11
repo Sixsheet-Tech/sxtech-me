@@ -38,8 +38,9 @@ export function Logo({ className = "" }: { className?: string }) {
   return (
     <Link to={L("/")} className={`flex items-center gap-2.5 ${className}`}>
       <img src={sxMark} alt="" className="h-7 w-auto" />
-      <span className="font-display text-lg font-extrabold tracking-tight text-foreground">
-        SIXSHEET <span className="text-brand">Tech</span>
+      <span className="font-display text-base font-extrabold uppercase tracking-[0.14em] text-foreground md:text-xl">
+        AI{" "}
+        <span className="bg-gradient-primary bg-clip-text text-transparent">Transformation</span>
       </span>
     </Link>
   );
