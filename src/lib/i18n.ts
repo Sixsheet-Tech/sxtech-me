@@ -42,6 +42,7 @@ export function useLocalePath() {
 const PAGE_PATHS = {
   home: "/",
   services: "/services",
+  fde: "/forward-deployed-ai",
   industries: "/industries",
   platforms: "/ventures",
   about: "/about",

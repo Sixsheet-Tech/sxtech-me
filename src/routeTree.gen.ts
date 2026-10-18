@@ -13,6 +13,7 @@ import { Route as VenturesRouteImport } from './routes/ventures'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as HumanTransformRouteImport } from './routes/human-transform'
+import { Route as ForwardDeployedAiRouteImport } from './routes/forward-deployed-ai'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BusinessVenturesRouteImport } from './routes/business-ventures'
 import { Route as AboutRouteImport } from './routes/about'
@@ -22,6 +23,7 @@ import { Route as EnIndexRouteImport } from './routes/en/index'
 import { Route as ThVenturesRouteImport } from './routes/th/ventures'
 import { Route as ThServicesRouteImport } from './routes/th/services'
 import { Route as ThIndustriesRouteImport } from './routes/th/industries'
+import { Route as ThForwardDeployedAiRouteImport } from './routes/th/forward-deployed-ai'
 import { Route as ThContactRouteImport } from './routes/th/contact'
 import { Route as ThAboutRouteImport } from './routes/th/about'
 import { Route as EnVenturesRouteImport } from './routes/en/ventures'
@@ -48,6 +50,11 @@ const IndustriesRoute = IndustriesRouteImport.update({
 const HumanTransformRoute = HumanTransformRouteImport.update({
   id: '/human-transform',
   path: '/human-transform',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForwardDeployedAiRoute = ForwardDeployedAiRouteImport.update({
+  id: '/forward-deployed-ai',
+  path: '/forward-deployed-ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -95,6 +102,11 @@ const ThIndustriesRoute = ThIndustriesRouteImport.update({
   path: '/th/industries',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ThForwardDeployedAiRoute = ThForwardDeployedAiRouteImport.update({
+  id: '/th/forward-deployed-ai',
+  path: '/th/forward-deployed-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ThContactRoute = ThContactRouteImport.update({
   id: '/th/contact',
   path: '/th/contact',
@@ -136,6 +148,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/business-ventures': typeof BusinessVenturesRoute
   '/contact': typeof ContactRoute
+  '/forward-deployed-ai': typeof ForwardDeployedAiRoute
   '/human-transform': typeof HumanTransformRoute
   '/industries': typeof IndustriesRoute
   '/services': typeof ServicesRoute
@@ -147,6 +160,7 @@ export interface FileRoutesByFullPath {
   '/en/ventures': typeof EnVenturesRoute
   '/th/about': typeof ThAboutRoute
   '/th/contact': typeof ThContactRoute
+  '/th/forward-deployed-ai': typeof ThForwardDeployedAiRoute
   '/th/industries': typeof ThIndustriesRoute
   '/th/services': typeof ThServicesRoute
   '/th/ventures': typeof ThVenturesRoute
@@ -158,6 +172,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/business-ventures': typeof BusinessVenturesRoute
   '/contact': typeof ContactRoute
+  '/forward-deployed-ai': typeof ForwardDeployedAiRoute
   '/human-transform': typeof HumanTransformRoute
   '/industries': typeof IndustriesRoute
   '/services': typeof ServicesRoute
@@ -169,6 +184,7 @@ export interface FileRoutesByTo {
   '/en/ventures': typeof EnVenturesRoute
   '/th/about': typeof ThAboutRoute
   '/th/contact': typeof ThContactRoute
+  '/th/forward-deployed-ai': typeof ThForwardDeployedAiRoute
   '/th/industries': typeof ThIndustriesRoute
   '/th/services': typeof ThServicesRoute
   '/th/ventures': typeof ThVenturesRoute
@@ -181,6 +197,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/business-ventures': typeof BusinessVenturesRoute
   '/contact': typeof ContactRoute
+  '/forward-deployed-ai': typeof ForwardDeployedAiRoute
   '/human-transform': typeof HumanTransformRoute
   '/industries': typeof IndustriesRoute
   '/services': typeof ServicesRoute
@@ -192,6 +209,7 @@ export interface FileRoutesById {
   '/en/ventures': typeof EnVenturesRoute
   '/th/about': typeof ThAboutRoute
   '/th/contact': typeof ThContactRoute
+  '/th/forward-deployed-ai': typeof ThForwardDeployedAiRoute
   '/th/industries': typeof ThIndustriesRoute
   '/th/services': typeof ThServicesRoute
   '/th/ventures': typeof ThVenturesRoute
@@ -205,6 +223,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/business-ventures'
     | '/contact'
+    | '/forward-deployed-ai'
     | '/human-transform'
     | '/industries'
     | '/services'
@@ -216,6 +235,7 @@ export interface FileRouteTypes {
     | '/en/ventures'
     | '/th/about'
     | '/th/contact'
+    | '/th/forward-deployed-ai'
     | '/th/industries'
     | '/th/services'
     | '/th/ventures'
@@ -227,6 +247,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/business-ventures'
     | '/contact'
+    | '/forward-deployed-ai'
     | '/human-transform'
     | '/industries'
     | '/services'
@@ -238,6 +259,7 @@ export interface FileRouteTypes {
     | '/en/ventures'
     | '/th/about'
     | '/th/contact'
+    | '/th/forward-deployed-ai'
     | '/th/industries'
     | '/th/services'
     | '/th/ventures'
@@ -249,6 +271,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/business-ventures'
     | '/contact'
+    | '/forward-deployed-ai'
     | '/human-transform'
     | '/industries'
     | '/services'
@@ -260,6 +283,7 @@ export interface FileRouteTypes {
     | '/en/ventures'
     | '/th/about'
     | '/th/contact'
+    | '/th/forward-deployed-ai'
     | '/th/industries'
     | '/th/services'
     | '/th/ventures'
@@ -272,6 +296,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BusinessVenturesRoute: typeof BusinessVenturesRoute
   ContactRoute: typeof ContactRoute
+  ForwardDeployedAiRoute: typeof ForwardDeployedAiRoute
   HumanTransformRoute: typeof HumanTransformRoute
   IndustriesRoute: typeof IndustriesRoute
   ServicesRoute: typeof ServicesRoute
@@ -283,6 +308,7 @@ export interface RootRouteChildren {
   EnVenturesRoute: typeof EnVenturesRoute
   ThAboutRoute: typeof ThAboutRoute
   ThContactRoute: typeof ThContactRoute
+  ThForwardDeployedAiRoute: typeof ThForwardDeployedAiRoute
   ThIndustriesRoute: typeof ThIndustriesRoute
   ThServicesRoute: typeof ThServicesRoute
   ThVenturesRoute: typeof ThVenturesRoute
@@ -318,6 +344,13 @@ declare module '@tanstack/react-router' {
       path: '/human-transform'
       fullPath: '/human-transform'
       preLoaderRoute: typeof HumanTransformRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forward-deployed-ai': {
+      id: '/forward-deployed-ai'
+      path: '/forward-deployed-ai'
+      fullPath: '/forward-deployed-ai'
+      preLoaderRoute: typeof ForwardDeployedAiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -383,6 +416,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThIndustriesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/th/forward-deployed-ai': {
+      id: '/th/forward-deployed-ai'
+      path: '/th/forward-deployed-ai'
+      fullPath: '/th/forward-deployed-ai'
+      preLoaderRoute: typeof ThForwardDeployedAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/th/contact': {
       id: '/th/contact'
       path: '/th/contact'
@@ -440,6 +480,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BusinessVenturesRoute: BusinessVenturesRoute,
   ContactRoute: ContactRoute,
+  ForwardDeployedAiRoute: ForwardDeployedAiRoute,
   HumanTransformRoute: HumanTransformRoute,
   IndustriesRoute: IndustriesRoute,
   ServicesRoute: ServicesRoute,
@@ -451,6 +492,7 @@ const rootRouteChildren: RootRouteChildren = {
   EnVenturesRoute: EnVenturesRoute,
   ThAboutRoute: ThAboutRoute,
   ThContactRoute: ThContactRoute,
+  ThForwardDeployedAiRoute: ThForwardDeployedAiRoute,
   ThIndustriesRoute: ThIndustriesRoute,
   ThServicesRoute: ThServicesRoute,
   ThVenturesRoute: ThVenturesRoute,

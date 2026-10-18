@@ -32,6 +32,7 @@ export function HomePage() {
       <Formula />
       <Moments />
       <ServicesTeaser />
+      <FdeTeaser />
       <IndustriesTeaser />
       <Platforms />
       <Why />
@@ -43,11 +44,12 @@ export function HomePage() {
 function Hero() {
   const t = useT();
   const h = t.home;
+  const L = useLocalePath();
   return (
     <section className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 pt-14 pb-16 md:pt-20 lg:grid-cols-[1.25fr_1fr]">
       <div>
         <Eyebrow>{h.heroEyebrow}</Eyebrow>
-        <h1 className="hero-title text-balance text-5xl font-extrabold uppercase leading-[0.98] text-foreground md:text-7xl">
+        <h1 className="hero-title text-balance text-4xl font-extrabold uppercase leading-[1.02] text-foreground md:text-6xl">
           {h.heroA}
           {h.heroBreak && <br />}
           <span className="text-brand">
@@ -60,17 +62,24 @@ function Hero() {
           {h.heroSub}
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <PrimaryButton to="/contact">{h.ctaPrimary}</PrimaryButton>
-          <GhostButton to="/services">{h.ctaSecondary}</GhostButton>
+          <PrimaryButton to="/services">{h.ctaPrimary}</PrimaryButton>
+          <GhostButton to="/forward-deployed-ai">{h.ctaSecondary}</GhostButton>
         </div>
-        <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-bold uppercase tracking-[0.18em] text-foreground/80">
-          {["People", "Business", "Technology", "AI"].map((p, i) => (
-            <span key={p} className="flex items-center gap-5">
-              {i > 0 && <span className="h-4 w-px bg-border" />}
-              {p}
+        <Link
+          to={L("/forward-deployed-ai")}
+          className="group mt-8 flex max-w-xl gap-4 rounded-2xl border border-border/80 bg-card/80 p-5 transition-all hover:shadow-glow"
+        >
+          <span className="mt-1 h-auto w-[3px] shrink-0 rounded-full bg-gradient-primary" />
+          <span>
+            <span className="font-display block text-sm font-extrabold uppercase tracking-wide text-foreground">
+              {h.fdeTitle}
             </span>
-          ))}
-        </div>
+            <span className="mt-1 block text-sm text-muted-foreground">{h.fdeLine}</span>
+            <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brand">
+              {h.fdeMore} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </span>
+        </Link>
       </div>
       <div className="relative">
         <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-primary opacity-25 blur-3xl" />
@@ -267,6 +276,44 @@ function ServicesTeaser() {
   );
 }
 
+/** Dark band introducing Forward Deployed AI Engineering, linking to its page. */
+function FdeTeaser() {
+  const t = useT();
+  const h = t.home;
+  return (
+    <Section>
+      <div className="relative overflow-hidden rounded-[2rem] bg-gradient-ink p-8 text-white md:p-12">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+          <div>
+            <div className="eyebrow text-xs font-semibold uppercase tracking-[0.22em] text-[color:var(--brand-lilac)]">
+              {h.fdeEyebrow}
+            </div>
+            <h2 className="mt-4 text-3xl font-extrabold leading-[1.1] md:text-4xl">
+              {h.fdeA}
+              <span className="text-[color:var(--brand-lilac)]">{h.fdeB}</span>
+            </h2>
+            <p className="mt-4 text-white/75">{h.fdeBody}</p>
+            <div className="mt-8">
+              <PrimaryButton to="/forward-deployed-ai">{h.fdeCta}</PrimaryButton>
+            </div>
+          </div>
+          <ol className="grid gap-3">
+            {t.fdePage.how.map((step, i) => (
+              <li key={step.title} className="flex gap-4 rounded-2xl border border-white/10 bg-white/5 p-4">
+                <span className="text-2xl font-light text-[color:var(--brand-lilac)]">{num(i)}</span>
+                <span>
+                  <span className="font-display block font-extrabold uppercase tracking-wide">{step.title}</span>
+                  <span className="text-sm text-white/70">{step.body}</span>
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
 function IndustriesTeaser() {
   const t = useT();
   const h = t.home;
@@ -291,8 +338,8 @@ function IndustriesTeaser() {
                   {ind.title}
                 </div>
               </div>
-              <div className="mt-2 font-semibold text-brand">{ind.tag}</div>
-              <p className="mt-2 text-sm text-muted-foreground">{ind.line}</p>
+              <div className="mt-2 text-xs font-semibold uppercase tracking-wide text-brand">{ind.tag}</div>
+              <p className="mt-2 font-semibold leading-snug text-foreground">{ind.outcome}</p>
             </ImageCard>
           </Link>
         ))}

@@ -9,6 +9,7 @@ import { localePath, stripLocale, useLang, useLocalePath, useT } from "@/lib/i18
 const NAV_KEYS = [
   { to: "/", key: "home" },
   { to: "/services", key: "services" },
+  { to: "/forward-deployed-ai", key: "fde" },
   { to: "/industries", key: "industries" },
   { to: "/ventures", key: "platforms" },
   { to: "/about", key: "about" },
@@ -82,12 +83,12 @@ export function Nav() {
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Logo />
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-6 xl:flex">
           {NAV_KEYS.map((l) => (
             <Link
               key={l.to}
               to={L(l.to)}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="whitespace-nowrap text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               activeOptions={{ exact: true }}
               activeProps={{ className: "!text-foreground" }}
             >
@@ -100,7 +101,7 @@ export function Nav() {
           <Button
             asChild
             size="sm"
-            className="hidden rounded-full bg-foreground px-5 text-background hover:bg-foreground/90 lg:inline-flex"
+            className="hidden rounded-full bg-foreground px-5 text-background hover:bg-foreground/90 xl:inline-flex"
           >
             <Link to={L("/contact")}>
               {t.nav.letsTalk} <ArrowRight className="ml-1 h-4 w-4" />
@@ -111,14 +112,14 @@ export function Nav() {
             aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="grid h-10 w-10 place-items-center rounded-full border border-border bg-card text-foreground lg:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full border border-border bg-card text-foreground xl:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
       {open && (
-        <div className="border-t border-border/70 bg-background/95 backdrop-blur-xl lg:hidden">
+        <div className="border-t border-border/70 bg-background/95 backdrop-blur-xl xl:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4">
             {NAV_KEYS.map((l) => (
               <Link
@@ -364,7 +365,15 @@ export function PrimaryButton({
   );
 }
 
-export function GhostButton({ to, children }: { to: string; children: React.ReactNode }) {
+export function GhostButton({
+  to,
+  hash,
+  children,
+}: {
+  to: string;
+  hash?: string;
+  children: React.ReactNode;
+}) {
   const L = useLocalePath();
   return (
     <Button
@@ -373,13 +382,26 @@ export function GhostButton({ to, children }: { to: string; children: React.Reac
       variant="outline"
       className="rounded-full border-border bg-card px-7 text-foreground hover:bg-secondary"
     >
-      <Link to={L(to)}>{children}</Link>
+      <Link to={L(to)} hash={hash}>
+        {children}
+      </Link>
     </Button>
   );
 }
 
 /** Closing call-to-action band — "Let's Build What's Next." */
-export function CtaBand({ image }: { image?: string }) {
+export function CtaBand({
+  image,
+  titleA,
+  titleB,
+  button,
+}: {
+  image?: string;
+  /** Optional page-specific copy; defaults to "Let's Build What's Next." */
+  titleA?: string;
+  titleB?: string;
+  button?: string;
+}) {
   const t = useT();
   const L = useLocalePath();
   return (
@@ -402,7 +424,7 @@ export function CtaBand({ image }: { image?: string }) {
             {t.cta.slogan}
           </div>
           <h2 className="mt-4 text-4xl font-extrabold leading-[1.05] md:text-5xl">
-            {t.cta.titleA} <span className="text-[color:var(--brand-lilac)]">{t.cta.titleB}</span>
+            {titleA ?? t.cta.titleA} <span className="text-[color:var(--brand-lilac)]">{titleB ?? t.cta.titleB}</span>
           </h2>
           <div className="mt-6 space-y-1.5 text-sm text-white/80">
             <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-2 hover:text-white">
@@ -418,7 +440,7 @@ export function CtaBand({ image }: { image?: string }) {
             className="mt-8 rounded-full bg-white px-7 text-[color:var(--brand-ink)] hover:bg-white/90"
           >
             <Link to={L("/contact")}>
-              {t.cta.button} <ArrowRight className="ml-1 h-4 w-4" />
+              {button ?? t.cta.button} <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </Button>
         </div>

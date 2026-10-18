@@ -1,6 +1,8 @@
+import { Link } from "@tanstack/react-router";
 import {
-  Briefcase,
+  ArrowRight,
   CheckCircle2,
+  Cpu,
   FileCheck2,
   GraduationCap,
   HandCoins,
@@ -22,7 +24,7 @@ import {
   Section,
 } from "@/components/site/Shell";
 import { EXPERTISE_IMAGES, PROCESS_IMAGES, num } from "@/lib/site-content";
-import { useT } from "@/lib/i18n";
+import { useLocalePath, useT } from "@/lib/i18n";
 import servicesHero from "@/assets/workshop/services-hero.jpg";
 import ctaCity from "@/assets/profile/cta-city.jpg";
 
@@ -47,9 +49,10 @@ export function ServicesPage() {
       >
         <div className="flex flex-wrap gap-3">
           <PrimaryButton to="/contact">{s.ctaPrimary}</PrimaryButton>
-          <GhostButton to="/industries">{s.ctaSecondary}</GhostButton>
+          <GhostButton to="/forward-deployed-ai">{s.ctaSecondary}</GhostButton>
         </div>
       </PageHero>
+      <ServiceLines />
       <Process />
       <Expertise />
       <BuildAndPartner />
@@ -59,12 +62,95 @@ export function ServicesPage() {
   );
 }
 
+const LINE_ICONS = [GraduationCap, Cpu];
+const LINE_LINKS = [
+  { to: "/services", hash: "capability" },
+  { to: "/forward-deployed-ai", hash: undefined },
+];
+
+/** Side-by-side: Capability Building (build capability) vs FDE (build the system). */
+function ServiceLines() {
+  const s = useT().services;
+  const L = useLocalePath();
+  return (
+    <Section
+      eyebrow={s.linesEyebrow}
+      title={
+        <>
+          {s.linesA}
+          <span className="text-brand">{s.linesB}</span>
+        </>
+      }
+    >
+      <div className="grid gap-6 lg:grid-cols-2">
+        {s.lines.map((line, i) => {
+          const Icon = LINE_ICONS[i];
+          const featured = i === 1;
+          return (
+            <div
+              key={line.title}
+              className={`flex flex-col rounded-[2rem] p-8 md:p-10 ${
+                featured ? "bg-gradient-ink text-white" : "border border-border/80 bg-card"
+              }`}
+            >
+              <div className="flex items-center justify-between gap-4">
+                <div
+                  className={`grid h-12 w-12 place-items-center rounded-2xl ${
+                    featured ? "bg-white/10 text-[color:var(--brand-lilac)]" : "bg-secondary text-brand"
+                  }`}
+                >
+                  <Icon className="h-6 w-6" />
+                </div>
+                <span
+                  className={`eyebrow text-xs font-semibold uppercase tracking-[0.2em] ${
+                    featured ? "text-[color:var(--brand-lilac)]" : "text-muted-foreground"
+                  }`}
+                >
+                  {line.label}
+                </span>
+              </div>
+              <div
+                className={`font-display mt-6 text-sm font-extrabold uppercase tracking-wide ${
+                  featured ? "text-[color:var(--brand-lilac)]" : "text-brand"
+                }`}
+              >
+                {line.tagline}
+              </div>
+              <h2 className="mt-1 text-2xl font-extrabold leading-tight md:text-3xl">{line.title}</h2>
+              <p className={`mt-3 ${featured ? "text-white/75" : "text-muted-foreground"}`}>{line.body}</p>
+              <ul className="mt-6 space-y-2.5 text-sm">
+                {line.points.map((p) => (
+                  <li key={p} className="flex gap-2">
+                    <CheckCircle2
+                      className={`mt-0.5 h-4 w-4 shrink-0 ${featured ? "text-[color:var(--brand-lilac)]" : "text-brand"}`}
+                    />
+                    <span className={featured ? "text-white/85" : "text-foreground/85"}>{p}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to={L(LINE_LINKS[i].to)}
+                hash={LINE_LINKS[i].hash}
+                className={`mt-auto inline-flex items-center gap-2 pt-8 text-sm font-semibold ${
+                  featured ? "text-white hover:text-[color:var(--brand-lilac)]" : "text-brand hover:opacity-80"
+                }`}
+              >
+                {line.cta} <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          );
+        })}
+      </div>
+    </Section>
+  );
+}
+
 function Process() {
   const t = useT();
   const s = t.services;
   return (
     <Section
-      id="how-we-work"
+      id="capability"
       eyebrow={s.processEyebrow}
       title={
         <>
@@ -155,7 +241,7 @@ function Expertise() {
   );
 }
 
-const BUILD_ICONS = [LayoutDashboard, Briefcase, Sparkles];
+const BUILD_ICONS = [LayoutDashboard, Sparkles];
 
 function BuildAndPartner() {
   const s = useT().services;
@@ -171,7 +257,7 @@ function BuildAndPartner() {
       }
       subtitle={s.buildSub}
     >
-      <div className="grid gap-5 lg:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-2">
         {s.build.map((b, i) => {
           const Icon = BUILD_ICONS[i];
           return (
