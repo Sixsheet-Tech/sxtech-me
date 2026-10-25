@@ -5,7 +5,6 @@ date: 2026-10-22
 author: kho
 tags: AI Adoption, AI Strategy, Workshop
 cover: workshop/why-simple.jpg
-status: draft
 ---
 
 **Short answer:** there is no single best AI tool. Pick the task you want to change first, decide what "good output" looks like, then test two or three tools on that exact task. The tool that your team keeps using after two weeks is the right one.

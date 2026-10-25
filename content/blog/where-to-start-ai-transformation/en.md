@@ -5,7 +5,6 @@ date: 2026-10-25
 author: ter
 tags: AI Transformation, Leadership, Strategy
 cover: workshop/belief-founders.jpg
-status: draft
 ---
 
 **Short answer:** start with one business outcome you care about this year — not with a tool or a platform. Pick the team that owns that outcome, find two or three workflows where AI can save time or improve quality, and run a 90-day plan with clear measures. Scale only what works.

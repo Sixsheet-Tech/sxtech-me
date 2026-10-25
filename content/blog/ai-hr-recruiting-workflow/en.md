@@ -5,7 +5,6 @@ date: 2026-10-20
 author: j
 tags: AI for HR, Workflow Design, Workshop
 cover: workshop/step-design.jpg
-status: draft
 ---
 
 **Short answer:** map every step of hiring — from the first request to the exit interview — on one page, then mark which steps are repetitive writing or communication. Those are where AI helps first. Decisions about people stay with people.
