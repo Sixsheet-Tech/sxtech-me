@@ -41,6 +41,11 @@ export const th: Dict = {
       description:
         "มาร่วมสร้างก้าวต่อไปของธุรกิจคุณ เล่าโจทย์ของคุณให้เราฟัง ไม่ว่าจะเป็น AI Transformation, In-house Training หรือการพัฒนาแพลตฟอร์ม",
     },
+    blog: {
+      title: "บทความ — บันทึกจากงาน AI Transformation จริง | SIXSHEET Tech",
+      description:
+        "บทความจากผู้ก่อตั้ง SIXSHEET Tech เรื่องการนำ AI มาใช้ในองค์กร การอบรม AI และ Workflow ที่ขับเคลื่อนด้วย AI เขียนจากประสบการณ์เวิร์กช็อปและโปรเจกต์จริง",
+    },
   },
 
   nav: {
@@ -51,6 +56,7 @@ export const th: Dict = {
     platforms: "แพลตฟอร์ม",
     about: "เกี่ยวกับเรา",
     contact: "ติดต่อเรา",
+    blog: "บทความ",
     letsTalk: "คุยกับเรา",
     openMenu: "เปิดเมนู",
     closeMenu: "ปิดเมนู",
@@ -635,5 +641,26 @@ export const th: Dict = {
     labelRegistration: "เลขทะเบียนนิติบุคคล",
     companyValue: "บริษัท ซิกชีทเทค จำกัด (Sixsheet Tech Co., Ltd.)",
     meetTeam: "พบกับทีมของเรา",
+  },
+
+  blog: {
+    eyebrow: "บทความ",
+    titleA: "บันทึกจากหน้างาน ",
+    titleB: "AI Transformation",
+    subtitle:
+      "สิ่งที่เราได้เรียนรู้จากการจัดเวิร์กช็อป AI และการนำ AI เข้าไปใช้กับทีมจริง เขียนโดยผู้ก่อตั้งที่ลงมือทำเอง",
+    readMore: "อ่านบทความ",
+    minRead: (n: number) => `อ่าน ${n} นาที`,
+    by: "โดย",
+    back: "บทความทั้งหมด",
+    empty: "บทความใหม่กำลังจะมา ติดตามได้เร็ว ๆ นี้",
+    draft: "ฉบับร่าง · ยังไม่เผยแพร่",
+    updated: "อัปเดต",
+    aboutAuthor: "เกี่ยวกับผู้เขียน",
+    viewProfile: "ดูโปรไฟล์",
+    postsBy: "บทความโดย",
+    noPosts: "ยังไม่มีบทความที่เผยแพร่",
+    founder: "ผู้ก่อตั้ง",
+    connect: "ติดต่อผ่าน LinkedIn",
   },
 };

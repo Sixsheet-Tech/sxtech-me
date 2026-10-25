@@ -12,6 +12,7 @@ const NAV_KEYS = [
   { to: "/forward-deployed-ai", key: "fde" },
   { to: "/industries", key: "industries" },
   { to: "/ventures", key: "platforms" },
+  { to: "/blog", key: "blog" },
   { to: "/about", key: "about" },
   { to: "/contact", key: "contact" },
 ] as const;

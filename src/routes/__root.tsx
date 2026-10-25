@@ -2,6 +2,7 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 
 import appCss from "../styles.css?url";
 import { useLang } from "@/lib/i18n";
+import { ldScript, organizationSchema } from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -38,7 +39,10 @@ export const Route = createRootRoute({
       },
       { name: "author", content: "SIXSHEET Tech" },
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "SIXSHEET Tech — We Build & Transform Businesses, Powered by AI" },
+      {
+        property: "og:title",
+        content: "SIXSHEET Tech — We Build & Transform Businesses, Powered by AI",
+      },
       {
         property: "og:description",
         content:
@@ -46,7 +50,10 @@ export const Route = createRootRoute({
       },
       { property: "og:image", content: "https://sxtech.me/og-image.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "SIXSHEET Tech — We Build & Transform Businesses, Powered by AI" },
+      {
+        name: "twitter:title",
+        content: "SIXSHEET Tech — We Build & Transform Businesses, Powered by AI",
+      },
       {
         name: "twitter:description",
         content:
@@ -73,6 +80,7 @@ export const Route = createRootRoute({
         href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap",
       },
     ],
+    scripts: [ldScript(organizationSchema())],
   }),
   shellComponent: RootShell,
   component: RootComponent,

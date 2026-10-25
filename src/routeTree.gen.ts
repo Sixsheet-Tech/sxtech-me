@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VenturesRouteImport } from './routes/ventures'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as HumanTransformRouteImport } from './routes/human-transform'
@@ -20,21 +21,32 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ThIndexRouteImport } from './routes/th/index'
 import { Route as EnIndexRouteImport } from './routes/en/index'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as ThVenturesRouteImport } from './routes/th/ventures'
 import { Route as ThServicesRouteImport } from './routes/th/services'
 import { Route as ThIndustriesRouteImport } from './routes/th/industries'
 import { Route as ThForwardDeployedAiRouteImport } from './routes/th/forward-deployed-ai'
 import { Route as ThContactRouteImport } from './routes/th/contact'
 import { Route as ThAboutRouteImport } from './routes/th/about'
+import { Route as TeamMemberRouteImport } from './routes/team/$member'
 import { Route as EnVenturesRouteImport } from './routes/en/ventures'
 import { Route as EnServicesRouteImport } from './routes/en/services'
 import { Route as EnIndustriesRouteImport } from './routes/en/industries'
 import { Route as EnContactRouteImport } from './routes/en/contact'
 import { Route as EnAboutRouteImport } from './routes/en/about'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
+import { Route as ThBlogIndexRouteImport } from './routes/th/blog/index'
+import { Route as ThTeamMemberRouteImport } from './routes/th/team/$member'
+import { Route as ThBlogSlugRouteImport } from './routes/th/blog/$slug'
 
 const VenturesRoute = VenturesRouteImport.update({
   id: '/ventures',
   path: '/ventures',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -87,6 +99,11 @@ const EnIndexRoute = EnIndexRouteImport.update({
   path: '/en/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ThVenturesRoute = ThVenturesRouteImport.update({
   id: '/th/ventures',
   path: '/th/ventures',
@@ -117,6 +134,11 @@ const ThAboutRoute = ThAboutRouteImport.update({
   path: '/th/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeamMemberRoute = TeamMemberRouteImport.update({
+  id: '/team/$member',
+  path: '/team/$member',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnVenturesRoute = EnVenturesRouteImport.update({
   id: '/en/ventures',
   path: '/en/ventures',
@@ -142,6 +164,26 @@ const EnAboutRoute = EnAboutRouteImport.update({
   path: '/en/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThBlogIndexRoute = ThBlogIndexRouteImport.update({
+  id: '/th/blog/',
+  path: '/th/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThTeamMemberRoute = ThTeamMemberRouteImport.update({
+  id: '/th/team/$member',
+  path: '/th/team/$member',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThBlogSlugRoute = ThBlogSlugRouteImport.update({
+  id: '/th/blog/$slug',
+  path: '/th/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -152,20 +194,27 @@ export interface FileRoutesByFullPath {
   '/human-transform': typeof HumanTransformRoute
   '/industries': typeof IndustriesRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ventures': typeof VenturesRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/en/about': typeof EnAboutRoute
   '/en/contact': typeof EnContactRoute
   '/en/industries': typeof EnIndustriesRoute
   '/en/services': typeof EnServicesRoute
   '/en/ventures': typeof EnVenturesRoute
+  '/team/$member': typeof TeamMemberRoute
   '/th/about': typeof ThAboutRoute
   '/th/contact': typeof ThContactRoute
   '/th/forward-deployed-ai': typeof ThForwardDeployedAiRoute
   '/th/industries': typeof ThIndustriesRoute
   '/th/services': typeof ThServicesRoute
   '/th/ventures': typeof ThVenturesRoute
+  '/blog/': typeof BlogIndexRoute
   '/en/': typeof EnIndexRoute
   '/th/': typeof ThIndexRoute
+  '/th/blog/$slug': typeof ThBlogSlugRoute
+  '/th/team/$member': typeof ThTeamMemberRoute
+  '/th/blog/': typeof ThBlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -176,20 +225,27 @@ export interface FileRoutesByTo {
   '/human-transform': typeof HumanTransformRoute
   '/industries': typeof IndustriesRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ventures': typeof VenturesRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/en/about': typeof EnAboutRoute
   '/en/contact': typeof EnContactRoute
   '/en/industries': typeof EnIndustriesRoute
   '/en/services': typeof EnServicesRoute
   '/en/ventures': typeof EnVenturesRoute
+  '/team/$member': typeof TeamMemberRoute
   '/th/about': typeof ThAboutRoute
   '/th/contact': typeof ThContactRoute
   '/th/forward-deployed-ai': typeof ThForwardDeployedAiRoute
   '/th/industries': typeof ThIndustriesRoute
   '/th/services': typeof ThServicesRoute
   '/th/ventures': typeof ThVenturesRoute
+  '/blog': typeof BlogIndexRoute
   '/en': typeof EnIndexRoute
   '/th': typeof ThIndexRoute
+  '/th/blog/$slug': typeof ThBlogSlugRoute
+  '/th/team/$member': typeof ThTeamMemberRoute
+  '/th/blog': typeof ThBlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -201,20 +257,27 @@ export interface FileRoutesById {
   '/human-transform': typeof HumanTransformRoute
   '/industries': typeof IndustriesRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/ventures': typeof VenturesRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/en/about': typeof EnAboutRoute
   '/en/contact': typeof EnContactRoute
   '/en/industries': typeof EnIndustriesRoute
   '/en/services': typeof EnServicesRoute
   '/en/ventures': typeof EnVenturesRoute
+  '/team/$member': typeof TeamMemberRoute
   '/th/about': typeof ThAboutRoute
   '/th/contact': typeof ThContactRoute
   '/th/forward-deployed-ai': typeof ThForwardDeployedAiRoute
   '/th/industries': typeof ThIndustriesRoute
   '/th/services': typeof ThServicesRoute
   '/th/ventures': typeof ThVenturesRoute
+  '/blog/': typeof BlogIndexRoute
   '/en/': typeof EnIndexRoute
   '/th/': typeof ThIndexRoute
+  '/th/blog/$slug': typeof ThBlogSlugRoute
+  '/th/team/$member': typeof ThTeamMemberRoute
+  '/th/blog/': typeof ThBlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -227,20 +290,27 @@ export interface FileRouteTypes {
     | '/human-transform'
     | '/industries'
     | '/services'
+    | '/sitemap.xml'
     | '/ventures'
+    | '/blog/$slug'
     | '/en/about'
     | '/en/contact'
     | '/en/industries'
     | '/en/services'
     | '/en/ventures'
+    | '/team/$member'
     | '/th/about'
     | '/th/contact'
     | '/th/forward-deployed-ai'
     | '/th/industries'
     | '/th/services'
     | '/th/ventures'
+    | '/blog/'
     | '/en/'
     | '/th/'
+    | '/th/blog/$slug'
+    | '/th/team/$member'
+    | '/th/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -251,20 +321,27 @@ export interface FileRouteTypes {
     | '/human-transform'
     | '/industries'
     | '/services'
+    | '/sitemap.xml'
     | '/ventures'
+    | '/blog/$slug'
     | '/en/about'
     | '/en/contact'
     | '/en/industries'
     | '/en/services'
     | '/en/ventures'
+    | '/team/$member'
     | '/th/about'
     | '/th/contact'
     | '/th/forward-deployed-ai'
     | '/th/industries'
     | '/th/services'
     | '/th/ventures'
+    | '/blog'
     | '/en'
     | '/th'
+    | '/th/blog/$slug'
+    | '/th/team/$member'
+    | '/th/blog'
   id:
     | '__root__'
     | '/'
@@ -275,20 +352,27 @@ export interface FileRouteTypes {
     | '/human-transform'
     | '/industries'
     | '/services'
+    | '/sitemap.xml'
     | '/ventures'
+    | '/blog/$slug'
     | '/en/about'
     | '/en/contact'
     | '/en/industries'
     | '/en/services'
     | '/en/ventures'
+    | '/team/$member'
     | '/th/about'
     | '/th/contact'
     | '/th/forward-deployed-ai'
     | '/th/industries'
     | '/th/services'
     | '/th/ventures'
+    | '/blog/'
     | '/en/'
     | '/th/'
+    | '/th/blog/$slug'
+    | '/th/team/$member'
+    | '/th/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -300,20 +384,27 @@ export interface RootRouteChildren {
   HumanTransformRoute: typeof HumanTransformRoute
   IndustriesRoute: typeof IndustriesRoute
   ServicesRoute: typeof ServicesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VenturesRoute: typeof VenturesRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   EnAboutRoute: typeof EnAboutRoute
   EnContactRoute: typeof EnContactRoute
   EnIndustriesRoute: typeof EnIndustriesRoute
   EnServicesRoute: typeof EnServicesRoute
   EnVenturesRoute: typeof EnVenturesRoute
+  TeamMemberRoute: typeof TeamMemberRoute
   ThAboutRoute: typeof ThAboutRoute
   ThContactRoute: typeof ThContactRoute
   ThForwardDeployedAiRoute: typeof ThForwardDeployedAiRoute
   ThIndustriesRoute: typeof ThIndustriesRoute
   ThServicesRoute: typeof ThServicesRoute
   ThVenturesRoute: typeof ThVenturesRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   EnIndexRoute: typeof EnIndexRoute
   ThIndexRoute: typeof ThIndexRoute
+  ThBlogSlugRoute: typeof ThBlogSlugRoute
+  ThTeamMemberRoute: typeof ThTeamMemberRoute
+  ThBlogIndexRoute: typeof ThBlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -323,6 +414,13 @@ declare module '@tanstack/react-router' {
       path: '/ventures'
       fullPath: '/ventures'
       preLoaderRoute: typeof VenturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -395,6 +493,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/th/ventures': {
       id: '/th/ventures'
       path: '/th/ventures'
@@ -437,6 +542,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThAboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/team/$member': {
+      id: '/team/$member'
+      path: '/team/$member'
+      fullPath: '/team/$member'
+      preLoaderRoute: typeof TeamMemberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en/ventures': {
       id: '/en/ventures'
       path: '/en/ventures'
@@ -472,6 +584,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnAboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/th/blog/': {
+      id: '/th/blog/'
+      path: '/th/blog'
+      fullPath: '/th/blog/'
+      preLoaderRoute: typeof ThBlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/th/team/$member': {
+      id: '/th/team/$member'
+      path: '/th/team/$member'
+      fullPath: '/th/team/$member'
+      preLoaderRoute: typeof ThTeamMemberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/th/blog/$slug': {
+      id: '/th/blog/$slug'
+      path: '/th/blog/$slug'
+      fullPath: '/th/blog/$slug'
+      preLoaderRoute: typeof ThBlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -484,20 +624,27 @@ const rootRouteChildren: RootRouteChildren = {
   HumanTransformRoute: HumanTransformRoute,
   IndustriesRoute: IndustriesRoute,
   ServicesRoute: ServicesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   VenturesRoute: VenturesRoute,
+  BlogSlugRoute: BlogSlugRoute,
   EnAboutRoute: EnAboutRoute,
   EnContactRoute: EnContactRoute,
   EnIndustriesRoute: EnIndustriesRoute,
   EnServicesRoute: EnServicesRoute,
   EnVenturesRoute: EnVenturesRoute,
+  TeamMemberRoute: TeamMemberRoute,
   ThAboutRoute: ThAboutRoute,
   ThContactRoute: ThContactRoute,
   ThForwardDeployedAiRoute: ThForwardDeployedAiRoute,
   ThIndustriesRoute: ThIndustriesRoute,
   ThServicesRoute: ThServicesRoute,
   ThVenturesRoute: ThVenturesRoute,
+  BlogIndexRoute: BlogIndexRoute,
   EnIndexRoute: EnIndexRoute,
   ThIndexRoute: ThIndexRoute,
+  ThBlogSlugRoute: ThBlogSlugRoute,
+  ThTeamMemberRoute: ThTeamMemberRoute,
+  ThBlogIndexRoute: ThBlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

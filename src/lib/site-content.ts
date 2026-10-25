@@ -53,6 +53,8 @@ export const WHY_IMAGES = [whySimple, whyReality, whyPractitioners, whyBeyond];
 export const num = (i: number) => String(i + 1).padStart(2, "0");
 
 export type TeamMember = {
+  /** URL slug for the author page: /team/<slug>. */
+  slug: string;
   name: string;
   nickname: string;
   years: number;
@@ -64,6 +66,7 @@ export type TeamMember = {
 
 export const TEAM: TeamMember[] = [
   {
+    slug: "ter",
     name: "Thanawin Ratametha",
     nickname: "Ter",
     years: 20,
@@ -73,6 +76,7 @@ export const TEAM: TeamMember[] = [
     phoneHref: "tel:+66839462656",
   },
   {
+    slug: "kho",
     name: "Schwat Tangboontina",
     nickname: "Kho",
     years: 15,
@@ -80,6 +84,7 @@ export const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/schwat-tangboontina-ba4285128",
   },
   {
+    slug: "j",
     name: "Settha",
     nickname: "J",
     years: 10,
@@ -87,6 +92,7 @@ export const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/jsettha",
   },
   {
+    slug: "krit",
     name: "Kritchapon Choktananan",
     nickname: "Krit",
     years: 15,

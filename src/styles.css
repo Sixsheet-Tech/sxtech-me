@@ -232,3 +232,87 @@ html[lang="th"] .eyebrow {
     font-size: 3.75rem;
   }
 }
+
+/* Long-form article body rendered from Markdown (blog posts). */
+.prose-blog {
+  color: color-mix(in oklab, var(--foreground) 88%, transparent);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+.prose-blog > * + * {
+  margin-top: 1.25em;
+}
+.prose-blog h2 {
+  margin-top: 2.2em;
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--foreground);
+}
+.prose-blog h3 {
+  margin-top: 1.8em;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+.prose-blog h2 + *,
+.prose-blog h3 + * {
+  margin-top: 0.6em;
+}
+.prose-blog strong {
+  color: var(--foreground);
+  font-weight: 700;
+}
+.prose-blog a {
+  color: var(--brand-violet);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-blog ul,
+.prose-blog ol {
+  padding-left: 1.4em;
+}
+.prose-blog ul {
+  list-style: disc;
+}
+.prose-blog ol {
+  list-style: decimal;
+}
+.prose-blog li + li {
+  margin-top: 0.4em;
+}
+.prose-blog li::marker {
+  color: var(--brand-violet);
+}
+.prose-blog blockquote {
+  border-left: 3px solid var(--brand-violet);
+  padding: 0.25em 0 0.25em 1.1em;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.prose-blog table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.prose-blog th,
+.prose-blog td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.6em 0.75em;
+  text-align: left;
+  vertical-align: top;
+}
+.prose-blog th {
+  color: var(--foreground);
+  font-weight: 700;
+}
+.prose-blog code {
+  border-radius: 0.375rem;
+  background: var(--secondary);
+  padding: 0.1em 0.35em;
+  font-size: 0.9em;
+}
+html[lang="th"] .prose-blog {
+  line-height: 1.9;
+}

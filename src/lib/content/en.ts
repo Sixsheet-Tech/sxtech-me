@@ -39,6 +39,11 @@ export const en = {
       description:
         "Let’s build what’s next. Tell us about your business challenge — AI transformation, in-house training, or a platform to build.",
     },
+    blog: {
+      title: "Insights — Field Notes on AI Transformation | SIXSHEET Tech",
+      description:
+        "Practical articles from the SIXSHEET Tech founders on AI adoption, AI training and AI-powered workflows — written from real workshops and real implementations.",
+    },
   },
 
   nav: {
@@ -49,6 +54,7 @@ export const en = {
     platforms: "Platforms",
     about: "About",
     contact: "Contact",
+    blog: "Insights",
     letsTalk: "Let’s Talk",
     openMenu: "Open menu",
     closeMenu: "Close menu",
@@ -642,6 +648,27 @@ export const en = {
     labelRegistration: "Registration no.",
     companyValue: "Sixsheet Tech Co., Ltd. (บริษัท ซิกชีทเทค จำกัด)",
     meetTeam: "Meet the team",
+  },
+
+  blog: {
+    eyebrow: "Insights",
+    titleA: "Field notes on ",
+    titleB: "AI transformation.",
+    subtitle:
+      "What we learn from running AI workshops and building AI into real teams — written by the founders who do the work.",
+    readMore: "Read article",
+    minRead: (n: number) => `${n} min read`,
+    by: "By",
+    back: "All articles",
+    empty: "New articles are on the way — check back soon.",
+    draft: "Draft · not published",
+    updated: "Updated",
+    aboutAuthor: "About the author",
+    viewProfile: "View profile",
+    postsBy: "Articles by",
+    noPosts: "No published articles yet.",
+    founder: "Founder",
+    connect: "Connect on LinkedIn",
   },
 };
 

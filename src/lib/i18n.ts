@@ -6,7 +6,7 @@ import { th } from "@/lib/content/th";
 export type Lang = "th" | "en";
 export const DICTS = { th, en };
 
-const SITE = "https://sxtech.me";
+export const SITE = "https://sxtech.me";
 
 export function langFromPath(pathname: string): Lang {
   return pathname === "/th" || pathname.startsWith("/th/") ? "th" : "en";
@@ -39,7 +39,7 @@ export function useLocalePath() {
   return (path: string) => localePath(lang, path);
 }
 
-const PAGE_PATHS = {
+export const PAGE_PATHS = {
   home: "/",
   services: "/services",
   fde: "/forward-deployed-ai",
@@ -47,6 +47,7 @@ const PAGE_PATHS = {
   platforms: "/ventures",
   about: "/about",
   contact: "/contact",
+  blog: "/blog",
 } as const;
 
 /** Per-page <head>: localized title/description, canonical and hreflang alternates. */
