@@ -6,7 +6,6 @@
 import { DICTS, SITE, localePath, type Lang } from "@/lib/i18n";
 import { authorBySlug, hasTranslation, type Post } from "@/lib/blog";
 import { CONTACT, TEAM, type TeamMember } from "@/lib/site-content";
-import sxMark from "@/assets/sx-mark.png";
 
 const ORG_ID = `${SITE}/#organization`;
 const abs = (url: string) => (url.startsWith("http") ? url : SITE + url);
@@ -26,7 +25,7 @@ export function organizationSchema() {
     legalName: CONTACT.companyEn,
     alternateName: CONTACT.companyTh,
     url: SITE,
-    logo: abs(sxMark),
+    logo: `${SITE}/logo-512.png`,
     email: CONTACT.email,
     telephone: CONTACT.phone,
     address: {

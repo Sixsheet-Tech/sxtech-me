@@ -62,6 +62,20 @@ export const Route = createRootRoute({
       { name: "twitter:image", content: "https://sxtech.me/og-image.jpg" },
     ],
     links: [
+      { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "/favicon-light.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "/favicon-dark.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       {
         rel: "stylesheet",
         href: appCss,

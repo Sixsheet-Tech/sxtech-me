@@ -2,7 +2,8 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, Mail, Menu, Phone, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import sxMark from "@/assets/sx-mark.png";
+import sxMarkDark from "@/assets/sx-mark-dark.png";
+import sxMarkLight from "@/assets/sx-mark-light.png";
 import { CONTACT } from "@/lib/site-content";
 import { localePath, stripLocale, useLang, useLocalePath, useT } from "@/lib/i18n";
 
@@ -35,14 +36,28 @@ export function BackgroundFX() {
   );
 }
 
-export function Logo({ className = "" }: { className?: string }) {
+/**
+ * SX. mark + wordmark. The ink mark sits on light surfaces; pass `onDark` on
+ * dark surfaces (CTA band, ink sections) to use the white mark instead.
+ */
+export function Logo({ className = "", onDark = false }: { className?: string; onDark?: boolean }) {
   const L = useLocalePath();
   return (
     <Link to={L("/")} className={`flex items-center gap-2.5 ${className}`}>
-      <img src={sxMark} alt="" className="h-7 w-auto" />
-      <span className="font-display text-base font-extrabold uppercase tracking-[0.14em] text-foreground md:text-xl">
-        AI{" "}
-        <span className="bg-gradient-primary bg-clip-text text-transparent">Transformation</span>
+      {onDark ? (
+        <img src={sxMarkLight} alt="SIXSHEET Tech" className="h-7 w-auto" />
+      ) : (
+        <>
+          <img src={sxMarkDark} alt="SIXSHEET Tech" className="h-7 w-auto dark:hidden" />
+          <img src={sxMarkLight} alt="SIXSHEET Tech" className="hidden h-7 w-auto dark:block" />
+        </>
+      )}
+      <span
+        className={`font-display text-base font-extrabold uppercase tracking-[0.14em] md:text-xl ${
+          onDark ? "text-white" : "text-foreground"
+        }`}
+      >
+        AI <span className="bg-gradient-primary bg-clip-text text-transparent">Transformation</span>
       </span>
     </Link>
   );
@@ -66,7 +81,9 @@ function LangSwitch({ className = "" }: { className?: string }) {
           hrefLang={l}
           aria-current={l === lang ? "true" : undefined}
           className={`rounded-full px-2.5 py-1 transition-colors ${
-            l === lang ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+            l === lang
+              ? "bg-foreground text-background"
+              : "text-muted-foreground hover:text-foreground"
           }`}
         >
           {l.toUpperCase()}
@@ -210,7 +227,13 @@ export function Footer() {
 }
 
 /** Small uppercase label with the profile's vertical accent bar. */
-export function Eyebrow({ children, center = false }: { children: React.ReactNode; center?: boolean }) {
+export function Eyebrow({
+  children,
+  center = false,
+}: {
+  children: React.ReactNode;
+  center?: boolean;
+}) {
   return (
     <div
       className={`eyebrow mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-brand ${
@@ -425,10 +448,14 @@ export function CtaBand({
             {t.cta.slogan}
           </div>
           <h2 className="mt-4 text-4xl font-extrabold leading-[1.05] md:text-5xl">
-            {titleA ?? t.cta.titleA} <span className="text-[color:var(--brand-lilac)]">{titleB ?? t.cta.titleB}</span>
+            {titleA ?? t.cta.titleA}{" "}
+            <span className="text-[color:var(--brand-lilac)]">{titleB ?? t.cta.titleB}</span>
           </h2>
           <div className="mt-6 space-y-1.5 text-sm text-white/80">
-            <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-2 hover:text-white">
+            <a
+              href={`mailto:${CONTACT.email}`}
+              className="flex items-center gap-2 hover:text-white"
+            >
               <Mail className="h-4 w-4" /> {CONTACT.email}
             </a>
             <a href={CONTACT.phoneHref} className="flex items-center gap-2 hover:text-white">
