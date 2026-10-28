@@ -444,6 +444,7 @@ export function CtaBand({
           />
         )}
         <div className="relative max-w-xl p-8 md:p-14">
+          <img src={sxMarkLight} alt="SIXSHEET Tech" className="mb-7 h-9 w-auto md:h-10" />
           <div className="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--brand-lilac)]">
             {t.cta.slogan}
           </div>
